@@ -2,23 +2,23 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { Users, Globe, MapPin, Building, ChevronLeft, ChevronRight, Sparkles, Zap, FileSearch, Calculator, Megaphone, PenLine, BookOpen } from "lucide-react";
 
 const stats = [
-  { label: "Recruiters", value: "5,678", icon: Users, accent: "from-blue-500/20 to-cyan-400/10" },
-  { label: "Countries", value: "38", icon: Globe, accent: "from-emerald-500/20 to-teal-400/10" },
-  { label: "Cities", value: "3,001", icon: MapPin, accent: "from-violet-500/20 to-purple-400/10" },
-  { label: "Companies", value: "1,243", icon: Building, accent: "from-amber-500/20 to-orange-400/10" },
+  { label: "Recruiters", value: "5,678", icon: Users, accent: "from-blue-400/20 to-blue-300/10" },
+  { label: "Countries", value: "38", icon: Globe, accent: "from-sky-500/20 to-sky-300/10" },
+  { label: "Cities", value: "3,001", icon: MapPin, accent: "from-indigo-500/20 to-indigo-300/10" },
+  { label: "Companies", value: "1,243", icon: Building, accent: "from-cyan-500/20 to-cyan-300/10" },
 ];
 
 const upcomingFeatures = [
-  { name: "ApplyAI", link: "#applyai", hasLearnMore: true, icon: Sparkles, accent: "from-blue-500/20 to-indigo-400/10" },
-  { name: "Interview AI", link: "#interviewai", hasLearnMore: true, icon: Zap, accent: "from-cyan-500/20 to-blue-400/10" },
-  { name: "Resume Scorer", link: null, hasLearnMore: false, icon: FileSearch, accent: "from-teal-500/20 to-emerald-400/10" },
-  { name: "Salary Calculator", link: null, hasLearnMore: false, icon: Calculator, accent: "from-violet-500/20 to-purple-400/10" },
+  { name: "ApplyAI", link: "#applyai", hasLearnMore: true, icon: Sparkles, accent: "from-blue-500/20 to-blue-400/10" },
+  { name: "Interview AI", link: "#interviewai", hasLearnMore: true, icon: Zap, accent: "from-sky-500/20 to-sky-300/10" },
+  { name: "Resume Scorer", link: null, hasLearnMore: false, icon: FileSearch, accent: "from-indigo-500/20 to-indigo-300/10" },
+  { name: "Salary Calculator", link: null, hasLearnMore: false, icon: Calculator, accent: "from-cyan-500/20 to-cyan-300/10" },
 ];
 
 const newFeatures = [
-  { name: "AdvertiseAI", link: "#advertiseai", hasLearnMore: true, icon: Megaphone, accent: "from-rose-500/20 to-pink-400/10" },
-  { name: "Job Posting Optimiser", link: "#jobs", hasLearnMore: true, icon: PenLine, accent: "from-amber-500/20 to-orange-400/10" },
-  { name: "Blogs", link: "#blogs", hasLearnMore: true, icon: BookOpen, accent: "from-emerald-500/20 to-teal-400/10" },
+  { name: "AdvertiseAI", link: "#advertiseai", hasLearnMore: true, icon: Megaphone, accent: "from-blue-600/20 to-blue-400/10" },
+  { name: "Job Posting Optimiser", link: "#jobs", hasLearnMore: true, icon: PenLine, accent: "from-sky-600/20 to-sky-400/10" },
+  { name: "Blogs", link: "#blogs", hasLearnMore: true, icon: BookOpen, accent: "from-indigo-400/20 to-indigo-300/10" },
 ];
 
 const allFeatures = [...upcomingFeatures, ...newFeatures];
