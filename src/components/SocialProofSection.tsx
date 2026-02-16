@@ -82,7 +82,7 @@ const SocialProofSection = () => {
             <div className="w-[30%] flex items-center justify-center p-4 bg-primary relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)] border-r border-primary/20">
               <h3 className="text-2xl font-extrabold leading-tight text-center">
                 <span className="text-primary-foreground">Why Joblet</span>
-                <span className="text-primary" style={{ WebkitTextStroke: '1.5px white' }}>AI</span>
+                <span className="text-primary" style={{ paintOrder: 'stroke fill', WebkitTextStroke: '2px white' }}>AI</span>
               </h3>
             </div>
             <div className="w-[70%] flex flex-col items-center justify-center p-4 gap-2">
