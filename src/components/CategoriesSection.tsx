@@ -23,7 +23,7 @@ const categories = [
 
 const CategoriesSection = () => {
   return (
-    <section id="categories" className="pt-8 pb-4 px-4">
+    <section id="categories" className="pt-11 pb-6 px-4">
       <div className="container">
         <div className="grid grid-cols-7 gap-2 max-w-5xl mx-auto">
           {categories.map((cat) => (
