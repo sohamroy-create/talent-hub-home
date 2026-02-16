@@ -88,11 +88,11 @@ const ApplyInterviewSection = () => {
             >
               <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-primary/5 blur-2xl group-hover:bg-primary/10 transition-all duration-500" />
 
-              <div className="flex items-center justify-center mb-3 relative">
-                <h3 className="text-lg font-extrabold text-foreground tracking-tight">{card.header}</h3>
-                <div className={`absolute right-0 p-2 rounded-lg ${card.iconBg} ring-1`}>
+              <div className="flex items-center mb-3 relative">
+                <div className={`p-2 rounded-lg ${card.iconBg} ring-1`}>
                   <card.icon className="h-5 w-5 text-primary" />
                 </div>
+                <h3 className="text-lg font-extrabold text-foreground tracking-tight absolute left-1/2 -translate-x-1/2">{card.header}</h3>
               </div>
 
               <div className="relative space-y-2 flex-1">
