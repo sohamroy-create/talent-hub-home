@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Users, Globe, MapPin, Building } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { Users, Globe, MapPin, Building, ChevronLeft, ChevronRight } from "lucide-react";
 
 const stats = [
   { label: "Recruiters", value: "5,678", icon: Users },
@@ -21,32 +21,42 @@ const newFeatures = [
   { name: "Blogs", link: "#blogs", hasLearnMore: true },
 ];
 
+const allFeatures = [...upcomingFeatures, ...newFeatures];
+
 const SocialProofSection = () => {
   const [statIndex, setStatIndex] = useState(0);
   const [featureIndex, setFeatureIndex] = useState(0);
-  // Total cycle: 4 upcoming (8s) + 3 new (6s) = 14s, tracked as a global tick
-  const [globalTick, setGlobalTick] = useState(0);
 
-  // Global tick every 2 seconds
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setGlobalTick((prev) => (prev + 1) % 7); // 7 ticks = 14 seconds total cycle
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
+  const isUpcoming = featureIndex < upcomingFeatures.length;
+  const currentFeature = allFeatures[featureIndex];
 
-  // Derive which phase we're in
-  const isUpcoming = globalTick < 4; // ticks 0-3 = upcoming (8s)
-  const currentFeatureIndex = isUpcoming ? globalTick : globalTick - 4;
-  const features = isUpcoming ? upcomingFeatures : newFeatures;
-  const currentFeature = features[currentFeatureIndex];
-
-  // Stats carousel every 2 seconds
+  // Auto-scroll stats
   useEffect(() => {
     const interval = setInterval(() => {
       setStatIndex((prev) => (prev + 1) % stats.length);
     }, 2000);
     return () => clearInterval(interval);
+  }, []);
+
+  // Auto-scroll features
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFeatureIndex((prev) => (prev + 1) % allFeatures.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const prevStat = useCallback(() => {
+    setStatIndex((prev) => (prev - 1 + stats.length) % stats.length);
+  }, []);
+  const nextStat = useCallback(() => {
+    setStatIndex((prev) => (prev + 1) % stats.length);
+  }, []);
+  const prevFeature = useCallback(() => {
+    setFeatureIndex((prev) => (prev - 1 + allFeatures.length) % allFeatures.length);
+  }, []);
+  const nextFeature = useCallback(() => {
+    setFeatureIndex((prev) => (prev + 1) % allFeatures.length);
   }, []);
 
   const currentStat = stats[statIndex];
@@ -56,50 +66,137 @@ const SocialProofSection = () => {
       <div className="container">
         <div className="grid grid-cols-2 gap-4 max-w-5xl mx-auto">
           {/* Left: Why JobletAI */}
-          <div className="flex rounded-xl border border-border overflow-hidden bg-card min-h-[140px]">
-            <div className="w-[30%] flex items-center justify-center p-4 bg-gradient-to-br from-primary/20 via-accent to-primary/10">
-              <h3 className="text-xl font-extrabold bg-gradient-to-r from-primary via-primary/80 to-secondary-foreground bg-clip-text text-transparent leading-tight text-center drop-shadow-sm">
-                Why JobletAI
+          <div className="flex rounded-xl border border-border overflow-hidden bg-card min-h-[160px]">
+            {/* Lifted label */}
+            <div className="w-[30%] flex items-center justify-center p-4 bg-gradient-to-br from-joblet-blue/10 to-joblet-blue/5 relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)]">
+              <h3 className="text-2xl font-extrabold leading-tight text-center">
+                <span className="text-joblet-blue-dark">Why Joblet</span>
+                <span className="text-joblet-navy">AI</span>
               </h3>
             </div>
-            <div className="w-[70%] flex items-center justify-center p-4">
-              <div
-                key={statIndex}
-                className="flex flex-col items-center gap-2 p-6 rounded-xl bg-secondary w-full max-w-[200px] animate-fade-in"
-              >
-                <currentStat.icon className="h-8 w-8 text-primary" />
-                <span className="text-3xl font-bold text-foreground">{currentStat.value}</span>
-                <span className="text-sm font-medium text-muted-foreground">{currentStat.label}</span>
+            <div className="w-[70%] flex flex-col items-center justify-center p-4 gap-2">
+              <div className="flex items-center gap-2 w-full max-w-[240px]">
+                <button
+                  onClick={prevStat}
+                  className="p-1 rounded-full hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label="Previous stat"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <div
+                  key={statIndex}
+                  className="flex flex-col items-center gap-2 p-5 rounded-xl bg-secondary w-full min-h-[120px] justify-center animate-fade-in"
+                >
+                  <currentStat.icon className="h-8 w-8 text-primary" />
+                  <span className="text-3xl font-bold text-foreground">{currentStat.value}</span>
+                  <span className="text-sm font-medium text-muted-foreground">{currentStat.label}</span>
+                </div>
+                <button
+                  onClick={nextStat}
+                  className="p-1 rounded-full hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label="Next stat"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+              {/* Dots */}
+              <div className="flex gap-1.5">
+                {stats.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setStatIndex(i)}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      i === statIndex ? "bg-primary" : "bg-border"
+                    }`}
+                    aria-label={`Go to stat ${i + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>
 
           {/* Right: Features */}
-          <div className="flex rounded-xl border border-border overflow-hidden bg-card min-h-[140px]">
-            <div className="w-[30%] flex items-center justify-center p-4 bg-gradient-to-br from-primary/20 via-accent to-primary/10">
-              <div
-                key={isUpcoming ? "upcoming" : "new"}
-                className="text-center animate-fade-in"
-              >
-                <h3 className="text-lg font-extrabold bg-gradient-to-r from-primary via-primary/80 to-secondary-foreground bg-clip-text text-transparent leading-tight drop-shadow-sm">
-                  {isUpcoming ? "Upcoming Features" : "New Features"}
-                </h3>
+          <div className="flex rounded-xl border border-border overflow-hidden bg-card min-h-[160px]">
+            {/* Lifted label */}
+            <div className="w-[30%] flex items-center justify-center p-4 bg-gradient-to-br from-joblet-blue/10 to-joblet-blue/5 relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)]">
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={prevFeature}
+                  className="p-0.5 rounded-full hover:bg-secondary/50 text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label="Previous label"
+                >
+                  <ChevronLeft className="h-3.5 w-3.5" />
+                </button>
+                <div
+                  key={isUpcoming ? "upcoming" : "new"}
+                  className="text-center animate-fade-in"
+                >
+                  <h3 className="text-xl font-extrabold leading-tight">
+                    {isUpcoming ? (
+                      <>
+                        <span className="text-joblet-blue-dark block">Upcoming</span>
+                        <span className="text-joblet-navy">Features</span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="text-joblet-blue-dark">New</span>{" "}
+                        <span className="text-joblet-navy">Features</span>
+                      </>
+                    )}
+                  </h3>
+                </div>
+                <button
+                  onClick={nextFeature}
+                  className="p-0.5 rounded-full hover:bg-secondary/50 text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label="Next label"
+                >
+                  <ChevronRight className="h-3.5 w-3.5" />
+                </button>
               </div>
             </div>
-            <div className="w-[70%] flex items-center justify-center p-4">
-              <div
-                key={`${isUpcoming}-${currentFeatureIndex}`}
-                className="flex flex-col items-center gap-3 p-6 rounded-xl bg-secondary w-full max-w-[220px] animate-fade-in text-center"
-              >
-                <span className="text-xl font-bold text-foreground">{currentFeature.name}</span>
-                {currentFeature.hasLearnMore && currentFeature.link && (
-                  <a
-                    href={currentFeature.link}
-                    className="text-sm font-medium text-primary hover:underline"
-                  >
-                    Learn More →
-                  </a>
-                )}
+            <div className="w-[70%] flex flex-col items-center justify-center p-4 gap-2">
+              <div className="flex items-center gap-2 w-full max-w-[240px]">
+                <button
+                  onClick={prevFeature}
+                  className="p-1 rounded-full hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label="Previous feature"
+                >
+                  <ChevronLeft className="h-4 w-4" />
+                </button>
+                <div
+                  key={featureIndex}
+                  className="flex flex-col items-center gap-3 p-5 rounded-xl bg-secondary w-full min-h-[120px] justify-center animate-fade-in text-center"
+                >
+                  <span className="text-xl font-bold text-foreground">{currentFeature.name}</span>
+                  {currentFeature.hasLearnMore && currentFeature.link && (
+                    <a
+                      href={currentFeature.link}
+                      className="text-sm font-medium text-primary hover:underline"
+                    >
+                      Learn More →
+                    </a>
+                  )}
+                </div>
+                <button
+                  onClick={nextFeature}
+                  className="p-1 rounded-full hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label="Next feature"
+                >
+                  <ChevronRight className="h-4 w-4" />
+                </button>
+              </div>
+              {/* Dots */}
+              <div className="flex gap-1.5">
+                {allFeatures.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setFeatureIndex(i)}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      i === featureIndex ? "bg-primary" : "bg-border"
+                    }`}
+                    aria-label={`Go to feature ${i + 1}`}
+                  />
+                ))}
               </div>
             </div>
           </div>
