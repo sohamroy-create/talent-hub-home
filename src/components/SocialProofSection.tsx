@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Users, Globe, MapPin, Building, ChevronLeft, ChevronRight, Sparkles, Zap, FileSearch, Calculator, Megaphone, PenLine, BookOpen } from "lucide-react";
 
 const stats = [
@@ -23,9 +23,14 @@ const newFeatures = [
 
 const allFeatures = [...upcomingFeatures, ...newFeatures];
 
+const DEFAULT_INTERVAL = 2000;
+const MANUAL_INTERVAL = 5000;
+
 const SocialProofSection = () => {
   const [statIndex, setStatIndex] = useState(0);
   const [featureIndex, setFeatureIndex] = useState(0);
+  const statIntervalRef = useRef(DEFAULT_INTERVAL);
+  const featureIntervalRef = useRef(DEFAULT_INTERVAL);
 
   const isUpcoming = featureIndex < upcomingFeatures.length;
   const currentFeature = allFeatures[featureIndex];
@@ -34,28 +39,34 @@ const SocialProofSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setStatIndex((prev) => (prev + 1) % stats.length);
-    }, 2000);
+      statIntervalRef.current = DEFAULT_INTERVAL; // reset after manual
+    }, statIntervalRef.current);
     return () => clearInterval(interval);
-  }, []);
+  }, [statIndex]);
 
   // Auto-scroll features
   useEffect(() => {
     const interval = setInterval(() => {
       setFeatureIndex((prev) => (prev + 1) % allFeatures.length);
-    }, 2000);
+      featureIntervalRef.current = DEFAULT_INTERVAL;
+    }, featureIntervalRef.current);
     return () => clearInterval(interval);
-  }, []);
+  }, [featureIndex]);
 
   const prevStat = useCallback(() => {
+    statIntervalRef.current = MANUAL_INTERVAL;
     setStatIndex((prev) => (prev - 1 + stats.length) % stats.length);
   }, []);
   const nextStat = useCallback(() => {
+    statIntervalRef.current = MANUAL_INTERVAL;
     setStatIndex((prev) => (prev + 1) % stats.length);
   }, []);
   const prevFeature = useCallback(() => {
+    featureIntervalRef.current = MANUAL_INTERVAL;
     setFeatureIndex((prev) => (prev - 1 + allFeatures.length) % allFeatures.length);
   }, []);
   const nextFeature = useCallback(() => {
+    featureIntervalRef.current = MANUAL_INTERVAL;
     setFeatureIndex((prev) => (prev + 1) % allFeatures.length);
   }, []);
 
@@ -66,12 +77,12 @@ const SocialProofSection = () => {
       <div className="container">
         <div className="grid grid-cols-2 gap-4 max-w-5xl mx-auto">
           {/* Left: Why JobletAI */}
-          <div className="flex rounded-xl border border-border overflow-hidden bg-card min-h-[160px]">
+          <div className="flex rounded-xl border border-border overflow-hidden bg-card min-h-[160px] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30">
             {/* Lifted label */}
-            <div className="w-[30%] flex items-center justify-center p-4 bg-gradient-to-br from-joblet-blue/10 to-joblet-blue/5 relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)]">
+            <div className="w-[30%] flex items-center justify-center p-4 bg-primary relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)] border-r border-primary/20">
               <h3 className="text-2xl font-extrabold leading-tight text-center">
-                <span className="text-[hsl(207,90%,54%)]">Why Joblet</span>
-                <span className="text-[hsl(220,40%,13%)]">AI</span>
+                <span className="text-primary-foreground">Why Joblet</span>
+                <span className="text-primary-foreground/80">AI</span>
               </h3>
             </div>
             <div className="w-[70%] flex flex-col items-center justify-center p-4 gap-2">
@@ -106,7 +117,10 @@ const SocialProofSection = () => {
                 {stats.map((_, i) => (
                   <button
                     key={i}
-                    onClick={() => setStatIndex(i)}
+                    onClick={() => {
+                      statIntervalRef.current = MANUAL_INTERVAL;
+                      setStatIndex(i);
+                    }}
                     className={`w-2 h-2 rounded-full transition-colors ${
                       i === statIndex ? "bg-primary" : "bg-border"
                     }`}
@@ -118,13 +132,13 @@ const SocialProofSection = () => {
           </div>
 
           {/* Right: Features */}
-          <div className="flex rounded-xl border border-border overflow-hidden bg-card min-h-[160px]">
+          <div className="flex rounded-xl border border-border overflow-hidden bg-card min-h-[160px] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30">
             {/* Lifted label */}
-            <div className="w-[30%] flex items-center justify-center p-4 bg-gradient-to-br from-joblet-blue/10 to-joblet-blue/5 relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)]">
+            <div className="w-[30%] flex items-center justify-center p-4 bg-primary relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)] border-r border-primary/20">
               <div className="flex items-center gap-1">
                 <button
                   onClick={prevFeature}
-                  className="p-0.5 rounded-full hover:bg-secondary/50 text-muted-foreground hover:text-foreground transition-colors"
+                  className="p-0.5 rounded-full hover:bg-primary-foreground/20 text-primary-foreground/70 hover:text-primary-foreground transition-colors"
                   aria-label="Previous label"
                 >
                   <ChevronLeft className="h-3.5 w-3.5" />
@@ -136,20 +150,20 @@ const SocialProofSection = () => {
                   <h3 className="text-xl font-extrabold leading-tight">
                     {isUpcoming ? (
                       <>
-                        <span className="text-[hsl(207,90%,54%)] block">Upcoming</span>
-                        <span className="text-[hsl(220,40%,13%)]">Features</span>
+                        <span className="text-primary-foreground block">Upcoming</span>
+                        <span className="text-primary-foreground/80">Features</span>
                       </>
                     ) : (
                       <>
-                        <span className="text-[hsl(207,90%,54%)]">New</span>{" "}
-                        <span className="text-[hsl(220,40%,13%)]">Features</span>
+                        <span className="text-primary-foreground">New</span>{" "}
+                        <span className="text-primary-foreground/80">Features</span>
                       </>
                     )}
                   </h3>
                 </div>
                 <button
                   onClick={nextFeature}
-                  className="p-0.5 rounded-full hover:bg-secondary/50 text-muted-foreground hover:text-foreground transition-colors"
+                  className="p-0.5 rounded-full hover:bg-primary-foreground/20 text-primary-foreground/70 hover:text-primary-foreground transition-colors"
                   aria-label="Next label"
                 >
                   <ChevronRight className="h-3.5 w-3.5" />
@@ -195,7 +209,10 @@ const SocialProofSection = () => {
                 {allFeatures.map((_, i) => (
                   <button
                     key={i}
-                    onClick={() => setFeatureIndex(i)}
+                    onClick={() => {
+                      featureIntervalRef.current = MANUAL_INTERVAL;
+                      setFeatureIndex(i);
+                    }}
                     className={`w-2 h-2 rounded-full transition-colors ${
                       i === featureIndex ? "bg-primary" : "bg-border"
                     }`}
