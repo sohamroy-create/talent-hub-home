@@ -1,24 +1,24 @@
 import { useState, useEffect, useCallback } from "react";
-import { Users, Globe, MapPin, Building, ChevronLeft, ChevronRight } from "lucide-react";
+import { Users, Globe, MapPin, Building, ChevronLeft, ChevronRight, Sparkles, Zap, FileSearch, Calculator, Megaphone, PenLine, BookOpen } from "lucide-react";
 
 const stats = [
-  { label: "Recruiters", value: "5,678", icon: Users },
-  { label: "Countries", value: "38", icon: Globe },
-  { label: "Cities", value: "3,001", icon: MapPin },
-  { label: "Companies", value: "1,243", icon: Building },
+  { label: "Recruiters", value: "5,678", icon: Users, accent: "from-blue-500/20 to-cyan-400/10" },
+  { label: "Countries", value: "38", icon: Globe, accent: "from-emerald-500/20 to-teal-400/10" },
+  { label: "Cities", value: "3,001", icon: MapPin, accent: "from-violet-500/20 to-purple-400/10" },
+  { label: "Companies", value: "1,243", icon: Building, accent: "from-amber-500/20 to-orange-400/10" },
 ];
 
 const upcomingFeatures = [
-  { name: "ApplyAI", link: "#applyai", hasLearnMore: true },
-  { name: "Interview AI", link: "#interviewai", hasLearnMore: true },
-  { name: "Resume Scorer", link: null, hasLearnMore: false },
-  { name: "Salary Calculator", link: null, hasLearnMore: false },
+  { name: "ApplyAI", link: "#applyai", hasLearnMore: true, icon: Sparkles, accent: "from-blue-500/20 to-indigo-400/10" },
+  { name: "Interview AI", link: "#interviewai", hasLearnMore: true, icon: Zap, accent: "from-cyan-500/20 to-blue-400/10" },
+  { name: "Resume Scorer", link: null, hasLearnMore: false, icon: FileSearch, accent: "from-teal-500/20 to-emerald-400/10" },
+  { name: "Salary Calculator", link: null, hasLearnMore: false, icon: Calculator, accent: "from-violet-500/20 to-purple-400/10" },
 ];
 
 const newFeatures = [
-  { name: "AdvertiseAI", link: "#advertiseai", hasLearnMore: true },
-  { name: "Job Posting Optimiser", link: "#jobs", hasLearnMore: true },
-  { name: "Blogs", link: "#blogs", hasLearnMore: true },
+  { name: "AdvertiseAI", link: "#advertiseai", hasLearnMore: true, icon: Megaphone, accent: "from-rose-500/20 to-pink-400/10" },
+  { name: "Job Posting Optimiser", link: "#jobs", hasLearnMore: true, icon: PenLine, accent: "from-amber-500/20 to-orange-400/10" },
+  { name: "Blogs", link: "#blogs", hasLearnMore: true, icon: BookOpen, accent: "from-emerald-500/20 to-teal-400/10" },
 ];
 
 const allFeatures = [...upcomingFeatures, ...newFeatures];
@@ -85,11 +85,13 @@ const SocialProofSection = () => {
                 </button>
                 <div
                   key={statIndex}
-                  className="flex flex-col items-center gap-2 p-5 rounded-xl bg-secondary w-full min-h-[120px] justify-center animate-fade-in"
+                  className={`flex flex-col items-center gap-2 p-5 rounded-xl bg-gradient-to-br ${currentStat.accent} border border-primary/10 w-full min-h-[120px] justify-center animate-fade-in shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300`}
                 >
-                  <currentStat.icon className="h-8 w-8 text-primary" />
-                  <span className="text-3xl font-bold text-foreground">{currentStat.value}</span>
-                  <span className="text-sm font-medium text-muted-foreground">{currentStat.label}</span>
+                  <div className="p-2.5 rounded-lg bg-primary/10 ring-1 ring-primary/20">
+                    <currentStat.icon className="h-7 w-7 text-primary" />
+                  </div>
+                  <span className="text-3xl font-extrabold tracking-tight text-foreground">{currentStat.value}</span>
+                  <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{currentStat.label}</span>
                 </div>
                 <button
                   onClick={nextStat}
@@ -165,15 +167,18 @@ const SocialProofSection = () => {
                 </button>
                 <div
                   key={featureIndex}
-                  className="flex flex-col items-center gap-3 p-5 rounded-xl bg-secondary w-full min-h-[120px] justify-center animate-fade-in text-center"
+                  className={`flex flex-col items-center gap-3 p-5 rounded-xl bg-gradient-to-br ${currentFeature.accent} border border-primary/10 w-full min-h-[120px] justify-center animate-fade-in text-center shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300`}
                 >
-                  <span className="text-xl font-bold text-foreground">{currentFeature.name}</span>
+                  <div className="p-2.5 rounded-lg bg-primary/10 ring-1 ring-primary/20">
+                    <currentFeature.icon className="h-7 w-7 text-primary" />
+                  </div>
+                  <span className="text-lg font-extrabold tracking-tight text-foreground">{currentFeature.name}</span>
                   {currentFeature.hasLearnMore && currentFeature.link && (
                     <a
                       href={currentFeature.link}
-                      className="text-sm font-medium text-primary hover:underline"
+                      className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-primary hover:text-primary/80 transition-colors"
                     >
-                      Learn More →
+                      Learn More <span className="text-sm">→</span>
                     </a>
                   )}
                 </div>
