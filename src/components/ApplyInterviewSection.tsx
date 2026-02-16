@@ -84,7 +84,7 @@ const ApplyInterviewSection = () => {
             <div
               key={card.id}
               id={card.id}
-              className={`group rounded-xl border border-primary/15 bg-gradient-to-br ${card.accent} p-5 hover:shadow-xl hover:scale-[1.03] hover:border-primary/30 transition-all duration-300 relative overflow-hidden`}
+              className={`group rounded-xl border border-primary/15 bg-gradient-to-br ${card.accent} p-5 hover:shadow-xl hover:scale-[1.03] hover:border-primary/30 transition-all duration-300 relative overflow-hidden flex flex-col`}
             >
               <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-primary/5 blur-2xl group-hover:bg-primary/10 transition-all duration-500" />
 
@@ -95,11 +95,11 @@ const ApplyInterviewSection = () => {
                 <h3 className="text-lg font-extrabold text-foreground tracking-tight">{card.header}</h3>
               </div>
 
-              <div className="relative space-y-2">
+              <div className="relative space-y-2 flex-1">
                 <p className="text-sm font-bold text-foreground">{card.text}</p>
                 <p className="text-xs text-muted-foreground leading-relaxed">{card.subtext}</p>
-                {card.countdownDays && <CountdownClock days={card.countdownDays} />}
               </div>
+              {card.countdownDays && <CountdownClock days={card.countdownDays} />}
             </div>
           ))}
         </div>
