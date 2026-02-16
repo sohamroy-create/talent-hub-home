@@ -73,7 +73,7 @@ const SocialProofSection = () => {
   const currentStat = stats[statIndex];
 
   return (
-    <section className="py-3 px-4">
+    <section className="pt-3 pb-5 px-4">
       <div className="container">
         <div className="grid grid-cols-2 gap-4 max-w-5xl mx-auto">
           {/* Left: Why JobletAI */}
