@@ -73,151 +73,95 @@ const SocialProofSection = () => {
   const currentStat = stats[statIndex];
 
   return (
-    <section className="py-4 px-4">
+    <section className="py-3 px-4">
       <div className="container">
         <div className="grid grid-cols-2 gap-4 max-w-5xl mx-auto">
           {/* Left: Why JobletAI */}
-          <div className="flex rounded-xl border border-border overflow-hidden bg-card min-h-[160px] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30">
-            {/* Lifted label */}
-            <div className="w-[30%] flex items-center justify-center p-4 bg-primary relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)] border-r border-primary/20">
-              <h3 className="text-2xl font-extrabold leading-tight text-center">
+          <div className="flex rounded-xl border border-border overflow-hidden bg-card transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30">
+            <div className="w-[28%] flex items-center justify-center p-3 bg-primary relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)] border-r border-primary/20">
+              <h3 className="text-xl font-extrabold leading-tight text-center">
                 <span className="text-primary-foreground">Why Joblet</span>
                 <span className="text-primary" style={{ paintOrder: 'stroke fill', WebkitTextStroke: '2px white' }}>AI</span>
               </h3>
             </div>
-            <div className="w-[70%] flex flex-col items-center justify-center p-4 gap-2">
-              <div className="flex items-center gap-2 w-full max-w-[240px]">
-                <button
-                  onClick={prevStat}
-                  className="p-1 rounded-full hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label="Previous stat"
-                >
+            <div className="w-[72%] flex flex-col items-center justify-center p-3 gap-1.5">
+              <div className="flex items-center gap-2 w-full">
+                <button onClick={prevStat} className="p-1 rounded-full hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors" aria-label="Previous stat">
                   <ChevronLeft className="h-4 w-4" />
                 </button>
                 <div
                   key={statIndex}
-                  className={`flex flex-col items-center gap-2 p-5 rounded-xl bg-gradient-to-br ${currentStat.accent} border border-primary/10 w-full h-[120px] justify-center animate-fade-in shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300`}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-br ${currentStat.accent} border border-primary/10 w-full h-[72px] animate-fade-in shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300`}
                 >
-                  <div className="p-2 rounded-lg bg-primary/10 ring-1 ring-primary/20">
+                  <div className="p-2 rounded-lg bg-primary/10 ring-1 ring-primary/20 shrink-0">
                     <currentStat.icon className="h-5 w-5 text-primary" />
                   </div>
-                  <span className="text-3xl font-extrabold tracking-tight text-foreground">{currentStat.value}</span>
-                  <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{currentStat.label}</span>
+                  <div className="flex flex-col">
+                    <span className="text-2xl font-extrabold tracking-tight text-foreground leading-none">{currentStat.value}</span>
+                    <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{currentStat.label}</span>
+                  </div>
                 </div>
-                <button
-                  onClick={nextStat}
-                  className="p-1 rounded-full hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label="Next stat"
-                >
+                <button onClick={nextStat} className="p-1 rounded-full hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors" aria-label="Next stat">
                   <ChevronRight className="h-4 w-4" />
                 </button>
               </div>
-              {/* Dots */}
               <div className="flex gap-1.5">
                 {stats.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => {
-                      statIntervalRef.current = MANUAL_INTERVAL;
-                      setStatIndex(i);
-                    }}
-                    className={`w-2 h-2 rounded-full transition-colors ${
-                      i === statIndex ? "bg-primary" : "bg-border"
-                    }`}
-                    aria-label={`Go to stat ${i + 1}`}
-                  />
+                  <button key={i} onClick={() => { statIntervalRef.current = MANUAL_INTERVAL; setStatIndex(i); }} className={`w-1.5 h-1.5 rounded-full transition-colors ${i === statIndex ? "bg-primary" : "bg-border"}`} aria-label={`Go to stat ${i + 1}`} />
                 ))}
               </div>
             </div>
           </div>
 
           {/* Right: Features */}
-          <div className="flex rounded-xl border border-border overflow-hidden bg-card min-h-[160px] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30">
-            {/* Lifted label */}
-            <div className="w-[30%] flex items-center justify-center p-4 bg-primary relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)] border-r border-primary/20">
+          <div className="flex rounded-xl border border-border overflow-hidden bg-card transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30">
+            <div className="w-[28%] flex items-center justify-center p-3 bg-primary relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)] border-r border-primary/20">
               <div className="flex items-center gap-1">
-                <button
-                  onClick={prevFeature}
-                  className="p-0.5 rounded-full hover:bg-primary-foreground/20 text-primary-foreground/70 hover:text-primary-foreground transition-colors"
-                  aria-label="Previous label"
-                >
-                  <ChevronLeft className="h-3.5 w-3.5" />
+                <button onClick={prevFeature} className="p-0.5 rounded-full hover:bg-primary-foreground/20 text-primary-foreground/70 hover:text-primary-foreground transition-colors" aria-label="Previous label">
+                  <ChevronLeft className="h-3 w-3" />
                 </button>
-                <div
-                  key={isUpcoming ? "upcoming" : "new"}
-                  className="text-center animate-fade-in"
-                >
-                  <h3 className="text-xl font-extrabold leading-tight">
+                <div key={isUpcoming ? "upcoming" : "new"} className="text-center animate-fade-in">
+                  <h3 className="text-lg font-extrabold leading-tight">
                     {isUpcoming ? (
-                      <>
-                        <span className="text-primary-foreground block">Upcoming</span>
-                        <span className="text-primary-foreground/80">Features</span>
-                      </>
+                      <><span className="text-primary-foreground block">Upcoming</span><span className="text-primary-foreground/80">Features</span></>
                     ) : (
-                      <>
-                        <span className="text-primary-foreground">New</span>{" "}
-                        <span className="text-primary-foreground/80">Features</span>
-                      </>
+                      <><span className="text-primary-foreground">New</span>{" "}<span className="text-primary-foreground/80">Features</span></>
                     )}
                   </h3>
                 </div>
-                <button
-                  onClick={nextFeature}
-                  className="p-0.5 rounded-full hover:bg-primary-foreground/20 text-primary-foreground/70 hover:text-primary-foreground transition-colors"
-                  aria-label="Next label"
-                >
-                  <ChevronRight className="h-3.5 w-3.5" />
+                <button onClick={nextFeature} className="p-0.5 rounded-full hover:bg-primary-foreground/20 text-primary-foreground/70 hover:text-primary-foreground transition-colors" aria-label="Next label">
+                  <ChevronRight className="h-3 w-3" />
                 </button>
               </div>
             </div>
-            <div className="w-[70%] flex flex-col items-center justify-center p-4 gap-2">
-              <div className="flex items-center gap-2 w-full max-w-[240px]">
-                <button
-                  onClick={prevFeature}
-                  className="p-1 rounded-full hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label="Previous feature"
-                >
+            <div className="w-[72%] flex flex-col items-center justify-center p-3 gap-1.5">
+              <div className="flex items-center gap-2 w-full">
+                <button onClick={prevFeature} className="p-1 rounded-full hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors" aria-label="Previous feature">
                   <ChevronLeft className="h-4 w-4" />
                 </button>
                 <div
                   key={featureIndex}
-                  className={`flex flex-col items-center gap-2 p-5 rounded-xl bg-gradient-to-br ${currentFeature.accent} border border-primary/10 w-full h-[120px] justify-center animate-fade-in text-center shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300`}
+                  className={`flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-br ${currentFeature.accent} border border-primary/10 w-full h-[72px] animate-fade-in shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300`}
                 >
-                  <div className="p-2 rounded-lg bg-primary/10 ring-1 ring-primary/20">
+                  <div className="p-2 rounded-lg bg-primary/10 ring-1 ring-primary/20 shrink-0">
                     <currentFeature.icon className="h-5 w-5 text-primary" />
                   </div>
-                  <span className="text-base font-extrabold tracking-tight text-foreground leading-tight">{currentFeature.name}</span>
-                  {currentFeature.hasLearnMore && currentFeature.link && (
-                    <a
-                      href={currentFeature.link}
-                      className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-primary hover:text-primary/80 transition-colors"
-                    >
-                      Learn More <span className="text-sm">→</span>
-                    </a>
-                  )}
+                  <div className="flex flex-col">
+                    <span className="text-sm font-extrabold tracking-tight text-foreground leading-tight">{currentFeature.name}</span>
+                    {currentFeature.hasLearnMore && currentFeature.link && (
+                      <a href={currentFeature.link} className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:text-primary/80 transition-colors">
+                        Learn More <span className="text-sm">→</span>
+                      </a>
+                    )}
+                  </div>
                 </div>
-                <button
-                  onClick={nextFeature}
-                  className="p-1 rounded-full hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors"
-                  aria-label="Next feature"
-                >
+                <button onClick={nextFeature} className="p-1 rounded-full hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors" aria-label="Next feature">
                   <ChevronRight className="h-4 w-4" />
                 </button>
               </div>
-              {/* Dots */}
               <div className="flex gap-1.5">
                 {allFeatures.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => {
-                      featureIntervalRef.current = MANUAL_INTERVAL;
-                      setFeatureIndex(i);
-                    }}
-                    className={`w-2 h-2 rounded-full transition-colors ${
-                      i === featureIndex ? "bg-primary" : "bg-border"
-                    }`}
-                    aria-label={`Go to feature ${i + 1}`}
-                  />
+                  <button key={i} onClick={() => { featureIntervalRef.current = MANUAL_INTERVAL; setFeatureIndex(i); }} className={`w-1.5 h-1.5 rounded-full transition-colors ${i === featureIndex ? "bg-primary" : "bg-border"}`} aria-label={`Go to feature ${i + 1}`} />
                 ))}
               </div>
             </div>
