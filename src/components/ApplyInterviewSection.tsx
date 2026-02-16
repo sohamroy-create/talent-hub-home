@@ -28,7 +28,7 @@ const CountdownClock = ({ days }: CountdownProps) => {
   ];
 
   return (
-    <div className="flex items-center gap-1.5 mt-3">
+    <div className="flex items-center justify-center gap-1.5 mt-3">
       <Clock className="h-3.5 w-3.5 text-primary shrink-0" />
       <div className="flex gap-1">
         {units.map((u) => (
