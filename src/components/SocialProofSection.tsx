@@ -70,8 +70,8 @@ const SocialProofSection = () => {
             {/* Lifted label */}
             <div className="w-[30%] flex items-center justify-center p-4 bg-gradient-to-br from-joblet-blue/10 to-joblet-blue/5 relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)]">
               <h3 className="text-2xl font-extrabold leading-tight text-center">
-                <span className="text-joblet-blue-dark">Why Joblet</span>
-                <span className="text-joblet-navy">AI</span>
+                <span className="text-[hsl(207,90%,54%)]">Why Joblet</span>
+                <span className="text-[hsl(220,40%,13%)]">AI</span>
               </h3>
             </div>
             <div className="w-[70%] flex flex-col items-center justify-center p-4 gap-2">
@@ -134,13 +134,13 @@ const SocialProofSection = () => {
                   <h3 className="text-xl font-extrabold leading-tight">
                     {isUpcoming ? (
                       <>
-                        <span className="text-joblet-blue-dark block">Upcoming</span>
-                        <span className="text-joblet-navy">Features</span>
+                        <span className="text-[hsl(207,90%,54%)] block">Upcoming</span>
+                        <span className="text-[hsl(220,40%,13%)]">Features</span>
                       </>
                     ) : (
                       <>
-                        <span className="text-joblet-blue-dark">New</span>{" "}
-                        <span className="text-joblet-navy">Features</span>
+                        <span className="text-[hsl(207,90%,54%)]">New</span>{" "}
+                        <span className="text-[hsl(220,40%,13%)]">Features</span>
                       </>
                     )}
                   </h3>
