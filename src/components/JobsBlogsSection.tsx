@@ -5,8 +5,8 @@ const cards = [
     id: "jobs",
     header: "Jobs",
     icon: Briefcase,
-    accent: "from-blue-500/20 to-blue-400/10",
-    iconBg: "bg-blue-500/10 ring-blue-500/20",
+    accent: "from-blue-400/15 to-sky-300/10",
+    iconBg: "bg-blue-400/10 ring-blue-400/20",
     items: [
       { text: "Post a Job", subtext: "Source talent, Globally", clickable: true, icon: PenLine },
       { text: "Look for a Job", subtext: "Look for jobs, Globally", clickable: true, icon: Search },
@@ -16,8 +16,8 @@ const cards = [
     id: "blogs",
     header: "Blogs",
     icon: BookOpen,
-    accent: "from-sky-500/20 to-sky-400/10",
-    iconBg: "bg-sky-500/10 ring-sky-500/20",
+    accent: "from-sky-400/15 to-blue-300/10",
+    iconBg: "bg-sky-400/10 ring-sky-400/20",
     items: [
       { text: "Post a Blog", subtext: "Become a thought leader", clickable: true, icon: PenLine },
       { text: "Look for a Blog", subtext: "Look for Industry insights", clickable: false, icon: Search },
@@ -27,8 +27,8 @@ const cards = [
     id: "advertiseai",
     header: "AdvertiseAI",
     icon: Megaphone,
-    accent: "from-indigo-500/20 to-indigo-400/10",
-    iconBg: "bg-indigo-500/10 ring-indigo-500/20",
+    accent: "from-blue-300/15 to-sky-200/10",
+    iconBg: "bg-blue-300/10 ring-blue-300/20",
     items: [
       { text: "Making your Jobs", subtext: "Reach the correct candidates", clickable: false, icon: Megaphone },
     ],
@@ -49,11 +49,11 @@ const JobsBlogsSection = () => {
               {/* Decorative glow */}
               <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-primary/5 blur-2xl group-hover:bg-primary/10 transition-all duration-500" />
               
-              <div className="flex items-center gap-3 mb-4 relative">
-                <div className={`p-2 rounded-lg ${card.iconBg} ring-1`}>
+              <div className="flex items-center justify-center mb-4 relative">
+                <h3 className="text-lg font-extrabold text-foreground tracking-tight">{card.header}</h3>
+                <div className={`absolute right-0 p-2 rounded-lg ${card.iconBg} ring-1`}>
                   <card.icon className="h-5 w-5 text-primary" />
                 </div>
-                <h3 className="text-lg font-extrabold text-foreground tracking-tight">{card.header}</h3>
               </div>
               
               <div className="space-y-3 relative">

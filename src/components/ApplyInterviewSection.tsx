@@ -47,8 +47,8 @@ const cards = [
     id: "applyai",
     header: "ApplyAI",
     icon: Sparkles,
-    accent: "from-blue-600/20 to-blue-400/10",
-    iconBg: "bg-blue-600/10 ring-blue-600/20",
+    accent: "from-blue-600/25 to-blue-500/15",
+    iconBg: "bg-blue-600/15 ring-blue-600/25",
     text: "Applying for a job just got 83% easier!",
     subtext: "The more you apply, the less you need to apply. Curious?",
     countdownDays: 27,
@@ -57,8 +57,8 @@ const cards = [
     id: "interviewai",
     header: "InterviewAI",
     icon: Zap,
-    accent: "from-sky-600/20 to-sky-400/10",
-    iconBg: "bg-sky-600/10 ring-sky-600/20",
+    accent: "from-sky-600/25 to-blue-500/15",
+    iconBg: "bg-sky-600/15 ring-sky-600/25",
     text: "Give AI Interviews without any hassle!",
     subtext: "Just send your AI avatar & Voila! Curious?",
     countdownDays: 43,
@@ -67,8 +67,8 @@ const cards = [
     id: "suggestions",
     header: "Suggestions",
     icon: MessageSquare,
-    accent: "from-indigo-500/20 to-indigo-400/10",
-    iconBg: "bg-indigo-500/10 ring-indigo-500/20",
+    accent: "from-indigo-600/25 to-blue-500/15",
+    iconBg: "bg-indigo-600/15 ring-indigo-600/25",
     text: "Let us know what feature you want!",
     subtext: "And we will name the feature after you!",
     countdownDays: null,
@@ -88,11 +88,11 @@ const ApplyInterviewSection = () => {
             >
               <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-primary/5 blur-2xl group-hover:bg-primary/10 transition-all duration-500" />
 
-              <div className="flex items-center gap-3 mb-3 relative">
-                <div className={`p-2 rounded-lg ${card.iconBg} ring-1`}>
+              <div className="flex items-center justify-center mb-3 relative">
+                <h3 className="text-lg font-extrabold text-foreground tracking-tight">{card.header}</h3>
+                <div className={`absolute right-0 p-2 rounded-lg ${card.iconBg} ring-1`}>
                   <card.icon className="h-5 w-5 text-primary" />
                 </div>
-                <h3 className="text-lg font-extrabold text-foreground tracking-tight">{card.header}</h3>
               </div>
 
               <div className="relative space-y-2 flex-1">
