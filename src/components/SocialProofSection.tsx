@@ -85,10 +85,10 @@ const SocialProofSection = () => {
                 </button>
                 <div
                   key={statIndex}
-                  className={`flex flex-col items-center gap-2 p-5 rounded-xl bg-gradient-to-br ${currentStat.accent} border border-primary/10 w-full min-h-[120px] justify-center animate-fade-in shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300`}
+                  className={`flex flex-col items-center gap-2 p-5 rounded-xl bg-gradient-to-br ${currentStat.accent} border border-primary/10 w-full h-[120px] justify-center animate-fade-in shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300`}
                 >
-                  <div className="p-2.5 rounded-lg bg-primary/10 ring-1 ring-primary/20">
-                    <currentStat.icon className="h-7 w-7 text-primary" />
+                  <div className="p-2 rounded-lg bg-primary/10 ring-1 ring-primary/20">
+                    <currentStat.icon className="h-5 w-5 text-primary" />
                   </div>
                   <span className="text-3xl font-extrabold tracking-tight text-foreground">{currentStat.value}</span>
                   <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{currentStat.label}</span>
@@ -167,12 +167,12 @@ const SocialProofSection = () => {
                 </button>
                 <div
                   key={featureIndex}
-                  className={`flex flex-col items-center gap-3 p-5 rounded-xl bg-gradient-to-br ${currentFeature.accent} border border-primary/10 w-full min-h-[120px] justify-center animate-fade-in text-center shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300`}
+                  className={`flex flex-col items-center gap-2 p-5 rounded-xl bg-gradient-to-br ${currentFeature.accent} border border-primary/10 w-full h-[120px] justify-center animate-fade-in text-center shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300`}
                 >
-                  <div className="p-2.5 rounded-lg bg-primary/10 ring-1 ring-primary/20">
-                    <currentFeature.icon className="h-7 w-7 text-primary" />
+                  <div className="p-2 rounded-lg bg-primary/10 ring-1 ring-primary/20">
+                    <currentFeature.icon className="h-5 w-5 text-primary" />
                   </div>
-                  <span className="text-lg font-extrabold tracking-tight text-foreground">{currentFeature.name}</span>
+                  <span className="text-base font-extrabold tracking-tight text-foreground leading-tight">{currentFeature.name}</span>
                   {currentFeature.hasLearnMore && currentFeature.link && (
                     <a
                       href={currentFeature.link}
