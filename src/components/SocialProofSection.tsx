@@ -78,7 +78,7 @@ const SocialProofSection = () => {
           <div className="flex rounded-xl border border-border overflow-hidden bg-card transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30">
             <div className="w-[28%] flex items-center justify-center p-3 bg-primary relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)] border-r border-primary/20">
               <h3 className="text-xl font-extrabold leading-tight text-center">
-                <span className="text-primary-foreground">Why Joblet</span>
+                <span className="text-primary-foreground" style={{ fontSize: '1.35rem' }}>Why Joblet</span>
                 <span className="text-primary" style={{ paintOrder: 'stroke fill', WebkitTextStroke: '2px white' }}>AI</span>
               </h3>
             </div>
