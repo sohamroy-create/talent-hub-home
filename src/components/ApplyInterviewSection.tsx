@@ -47,7 +47,7 @@ const cards = [
     id: "applyai",
     header: "ApplyAI",
     icon: Sparkles,
-    accent: "from-blue-600/25 to-blue-500/15",
+    bg: "bg-[#DCFFFF]",
     iconBg: "bg-blue-600/15 ring-blue-600/25",
     text: "Applying for a job just got 83% easier!",
     subtext: "The more you apply, the less you need to apply. Curious?",
@@ -57,7 +57,7 @@ const cards = [
     id: "interviewai",
     header: "InterviewAI",
     icon: Zap,
-    accent: "from-sky-600/25 to-blue-500/15",
+    bg: "bg-[#C9F6FF]",
     iconBg: "bg-sky-600/15 ring-sky-600/25",
     text: "Give AI Interviews without any hassle!",
     subtext: "Just send your AI avatar & Voila! Curious?",
@@ -67,7 +67,7 @@ const cards = [
     id: "suggestions",
     header: "Suggestions",
     icon: MessageSquare,
-    accent: "from-indigo-600/25 to-blue-500/15",
+    bg: "bg-[#97EBF4]",
     iconBg: "bg-indigo-600/15 ring-indigo-600/25",
     text: "Let us know what feature you want!",
     subtext: "And we will name the feature after you!",
@@ -84,7 +84,7 @@ const ApplyInterviewSection = () => {
             <div
               key={card.id}
               id={card.id}
-              className={`group rounded-xl border border-primary/15 bg-gradient-to-br ${card.accent} p-5 hover:shadow-xl hover:scale-[1.03] hover:border-primary/30 transition-all duration-300 relative overflow-hidden flex flex-col`}
+              className={`group rounded-xl border-2 border-blue-400 ${card.bg} p-5 hover:shadow-xl hover:scale-[1.03] hover:border-blue-500 transition-all duration-300 relative overflow-hidden flex flex-col`}
             >
               <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-primary/5 blur-2xl group-hover:bg-primary/10 transition-all duration-500" />
 
@@ -95,9 +95,11 @@ const ApplyInterviewSection = () => {
                 <h3 className="text-lg font-extrabold text-foreground tracking-tight absolute left-1/2 -translate-x-1/2">{card.header}</h3>
               </div>
 
-              <div className="relative space-y-2 flex-1">
-                <p className="text-sm font-bold text-foreground">{card.text}</p>
-                <p className="text-xs text-muted-foreground leading-relaxed">{card.subtext}</p>
+              <div className="relative space-y-3 flex-1">
+                <div className="p-3 rounded-lg bg-background/60 border border-border/50">
+                  <p className="text-sm font-bold text-foreground">{card.text}</p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{card.subtext}</p>
+                </div>
               </div>
               {card.countdownDays && <CountdownClock days={card.countdownDays} />}
             </div>
