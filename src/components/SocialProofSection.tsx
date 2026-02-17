@@ -89,7 +89,7 @@ const SocialProofSection = () => {
                 </button>
                 <div
                   key={statIndex}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#DCFFFF] border border-primary/10 w-full h-[72px] animate-fade-in shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300"
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#8AABE8] border border-primary/10 w-full h-[72px] animate-fade-in shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300"
                 >
                   <div className="p-2 rounded-lg bg-primary/10 ring-1 ring-primary/20 shrink-0">
                     <currentStat.icon className="h-5 w-5 text-primary" />
@@ -139,7 +139,7 @@ const SocialProofSection = () => {
                 </button>
                 <div
                   key={featureIndex}
-                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#DCFFFF] border border-primary/10 w-full h-[72px] animate-fade-in shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300"
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#8AABE8] border border-primary/10 w-full h-[72px] animate-fade-in shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300"
                 >
                   <div className="p-2 rounded-lg bg-primary/10 ring-1 ring-primary/20 shrink-0">
                     <currentFeature.icon className="h-5 w-5 text-primary" />
