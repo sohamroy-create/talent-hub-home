@@ -20,8 +20,8 @@ const cards = [
     bg: "bg-[#DCFFFF]",
     iconBg: "bg-sky-400/10 ring-sky-400/20",
     items: [
-      { text: "Post a Blog", subtext: "Become a thought leader", clickable: true, icon: PenLine },
-      { text: "Look for a Blog", subtext: "Look for Industry insights", clickable: false, icon: Search },
+      { text: "Post a Blog", subtext: "Become a thought leader", clickable: false, icon: PenLine },
+      { text: "Look for a Blog", subtext: "Look for Industry insights", clickable: true, icon: Search },
     ],
     hasClickHere: false,
   },
