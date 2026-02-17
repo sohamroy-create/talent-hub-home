@@ -2,23 +2,23 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { Users, Globe, MapPin, Building, ChevronLeft, ChevronRight, Sparkles, Zap, FileSearch, Calculator, Megaphone, PenLine, BookOpen } from "lucide-react";
 
 const stats = [
-  { label: "Recruiters", value: "5,678", icon: Users, accent: "from-blue-400/20 to-blue-300/10" },
-  { label: "Countries", value: "38", icon: Globe, accent: "from-sky-500/20 to-sky-300/10" },
-  { label: "Cities", value: "3,001", icon: MapPin, accent: "from-indigo-500/20 to-indigo-300/10" },
-  { label: "Companies", value: "1,243", icon: Building, accent: "from-cyan-500/20 to-cyan-300/10" },
+  { label: "Recruiters", value: "5,678", icon: Users },
+  { label: "Countries", value: "38", icon: Globe },
+  { label: "Cities", value: "3,001", icon: MapPin },
+  { label: "Companies", value: "1,243", icon: Building },
 ];
 
 const upcomingFeatures = [
-  { name: "ApplyAI", link: "#applyai", hasLearnMore: true, icon: Sparkles, accent: "from-blue-500/20 to-blue-400/10" },
-  { name: "Interview AI", link: "#interviewai", hasLearnMore: true, icon: Zap, accent: "from-sky-500/20 to-sky-300/10" },
-  { name: "Resume Scorer", link: null, hasLearnMore: false, icon: FileSearch, accent: "from-indigo-500/20 to-indigo-300/10" },
-  { name: "Salary Calculator", link: null, hasLearnMore: false, icon: Calculator, accent: "from-cyan-500/20 to-cyan-300/10" },
+  { name: "ApplyAI", link: "#applyai", hasLearnMore: true, icon: Sparkles },
+  { name: "Interview AI", link: "#interviewai", hasLearnMore: true, icon: Zap },
+  { name: "Resume Scorer", link: null, hasLearnMore: false, icon: FileSearch },
+  { name: "Salary Calculator", link: null, hasLearnMore: false, icon: Calculator },
 ];
 
 const newFeatures = [
-  { name: "AdvertiseAI", link: "#advertiseai", hasLearnMore: true, icon: Megaphone, accent: "from-blue-600/20 to-blue-400/10" },
-  { name: "Job Posting Optimiser", link: "#jobs", hasLearnMore: true, icon: PenLine, accent: "from-sky-600/20 to-sky-400/10" },
-  { name: "Blogs", link: "#blogs", hasLearnMore: true, icon: BookOpen, accent: "from-indigo-400/20 to-indigo-300/10" },
+  { name: "AdvertiseAI", link: "#advertiseai", hasLearnMore: true, icon: Megaphone },
+  { name: "Job Posting Optimiser", link: "#jobs", hasLearnMore: true, icon: PenLine },
+  { name: "Blogs", link: "#blogs", hasLearnMore: true, icon: BookOpen },
 ];
 
 const allFeatures = [...upcomingFeatures, ...newFeatures];
@@ -75,7 +75,7 @@ const SocialProofSection = () => {
       <div className="container">
         <div className="grid grid-cols-2 gap-4 max-w-5xl mx-auto">
           {/* Left: Why JobletAI */}
-          <div className="flex rounded-xl border border-border overflow-hidden bg-[#DCFFFF] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30">
+          <div className="flex rounded-xl border border-border overflow-hidden bg-card transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30">
             <div className="w-[28%] flex items-center justify-center p-3 bg-primary relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)] border-r border-primary/20">
               <h3 className="text-xl font-extrabold leading-tight text-center">
                 <span className="text-primary-foreground">Why Joblet</span>
@@ -89,14 +89,14 @@ const SocialProofSection = () => {
                 </button>
                 <div
                   key={statIndex}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-br ${currentStat.accent} border border-primary/10 w-full h-[72px] animate-fade-in shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300`}
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#DCFFFF] border border-primary/10 w-full h-[72px] animate-fade-in shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300"
                 >
                   <div className="p-2 rounded-lg bg-primary/10 ring-1 ring-primary/20 shrink-0">
                     <currentStat.icon className="h-5 w-5 text-primary" />
                   </div>
-                  <div className="flex flex-col flex-1 text-center">
+                  <div className="flex flex-col">
                     <span className="text-2xl font-extrabold tracking-tight text-foreground leading-none">{currentStat.value}</span>
-                    <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground text-left">{currentStat.label}</span>
+                    <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{currentStat.label}</span>
                   </div>
                 </div>
                 <button onClick={nextStat} className="p-1 rounded-full hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors" aria-label="Next stat">
@@ -112,7 +112,7 @@ const SocialProofSection = () => {
           </div>
 
           {/* Right: Features */}
-          <div className="flex rounded-xl border border-border overflow-hidden bg-[#DCFFFF] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30">
+          <div className="flex rounded-xl border border-border overflow-hidden bg-card transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30">
             <div className="w-[28%] flex items-center justify-center p-3 bg-primary relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)] border-r border-primary/20">
               <div className="flex items-center gap-1">
                 <button onClick={prevFeature} className="p-0.5 rounded-full hover:bg-primary-foreground/20 text-primary-foreground/70 hover:text-primary-foreground transition-colors" aria-label="Previous label">
@@ -139,15 +139,15 @@ const SocialProofSection = () => {
                 </button>
                 <div
                   key={featureIndex}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-xl bg-gradient-to-br ${currentFeature.accent} border border-primary/10 w-full h-[72px] animate-fade-in shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300`}
+                  className="flex items-center gap-3 px-4 py-3 rounded-xl bg-[#DCFFFF] border border-primary/10 w-full h-[72px] animate-fade-in shadow-[0_4px_20px_-4px_hsl(217_91%_50%/0.12)] transition-all duration-300"
                 >
                   <div className="p-2 rounded-lg bg-primary/10 ring-1 ring-primary/20 shrink-0">
                     <currentFeature.icon className="h-5 w-5 text-primary" />
                   </div>
-                  <div className="flex flex-col flex-1 text-center">
+                  <div className="flex flex-col">
                     <span className="text-sm font-extrabold tracking-tight text-foreground leading-tight">{currentFeature.name}</span>
                     {currentFeature.hasLearnMore && currentFeature.link && (
-                      <a href={currentFeature.link} className="inline-flex items-center justify-start gap-1 text-xs font-semibold text-primary hover:text-primary/80 transition-colors">
+                      <a href={currentFeature.link} className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:text-primary/80 transition-colors">
                         Learn More <span className="text-sm">→</span>
                       </a>
                     )}
