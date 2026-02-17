@@ -71,9 +71,9 @@ const SocialProofSection = () => {
   const currentStat = stats[statIndex];
 
   return (
-    <section className="pt-4 pb-8 px-4">
-      <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto px-2 md:px-0">
+    <section className="pt-4 pb-8 px-0">
+      <div className="w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:max-w-5xl md:mx-auto md:px-4 px-2">
           {/* Left: Why JobletAI */}
           <div className="flex rounded-xl border border-border overflow-hidden bg-card transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30">
             <div className="w-[28%] flex items-center justify-center p-3 bg-primary relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)] border-r border-primary/20">
