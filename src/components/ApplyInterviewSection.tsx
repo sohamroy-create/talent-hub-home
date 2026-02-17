@@ -110,7 +110,7 @@ const ApplyInterviewSection = () => {
             <div
               key={card.id}
               id={card.id}
-              className={`group rounded-xl border-2 border-blue-400 ${card.bg} p-5 hover:shadow-xl hover:scale-[1.03] hover:border-blue-500 transition-all duration-300 relative overflow-hidden flex flex-col`}
+              className={`group rounded-xl border border-blue-300/60 ${card.bg} p-5 hover:shadow-xl hover:scale-[1.03] hover:border-blue-400 transition-all duration-300 relative overflow-hidden flex flex-col`}
             >
               <div className="absolute -top-8 -right-8 w-24 h-24 rounded-full bg-primary/5 blur-2xl group-hover:bg-primary/10 transition-all duration-500" />
 
