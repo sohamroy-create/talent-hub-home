@@ -25,12 +25,12 @@ const CategoriesSection = () => {
   return (
     <section id="categories" className="pt-14 pb-8 px-4">
       <div className="container">
-        <div className="grid grid-cols-7 gap-2 max-w-5xl mx-auto">
+        <div className="flex md:grid md:grid-cols-7 gap-2 max-w-5xl mx-auto overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide">
           {categories.map((cat) => (
             <a
               key={cat.name}
               href="#"
-              className="flex flex-col items-center gap-1.5 p-3 rounded-lg border border-border bg-card hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5 transition-all text-center group"
+              className="flex flex-col items-center gap-1.5 p-3 rounded-lg border border-border bg-card hover:shadow-md hover:border-primary/30 hover:-translate-y-0.5 transition-all text-center group min-w-[120px] md:min-w-0 shrink-0 md:shrink snap-start"
             >
               <cat.icon className="h-5 w-5 text-primary group-hover:text-primary/80" />
               <span className="text-xs font-medium text-foreground leading-tight">{cat.name}</span>
