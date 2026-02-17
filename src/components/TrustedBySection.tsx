@@ -2,7 +2,7 @@ const logoSlots = Array.from({ length: 10 }, (_, i) => i + 1);
 
 const TrustedBySection = () => {
   return (
-    <section className="pt-4 pb-5 bg-secondary/50">
+    <section className="pt-4 pb-8 bg-secondary/50">
       <div className="container text-center mb-3">
         <h2 className="text-xl font-bold text-foreground">Trusted by Industry Leaders</h2>
       </div>
