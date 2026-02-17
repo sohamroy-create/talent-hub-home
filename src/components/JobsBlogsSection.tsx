@@ -11,27 +11,30 @@ const cards = [
       { text: "Post a Job", subtext: "Source talent, Globally", clickable: true, icon: PenLine },
       { text: "Look for a Job", subtext: "Look for jobs, Globally", clickable: true, icon: Search },
     ],
+    hasClickHere: false,
   },
   {
     id: "blogs",
     header: "Blogs",
     icon: BookOpen,
-    bg: "bg-[#C9F6FF]",
+    bg: "bg-[#DCFFFF]",
     iconBg: "bg-sky-400/10 ring-sky-400/20",
     items: [
       { text: "Post a Blog", subtext: "Become a thought leader", clickable: true, icon: PenLine },
       { text: "Look for a Blog", subtext: "Look for Industry insights", clickable: false, icon: Search },
     ],
+    hasClickHere: false,
   },
   {
     id: "advertiseai",
     header: "AdvertiseAI",
     icon: Megaphone,
-    bg: "bg-[#97EBF4]",
+    bg: "bg-[#DCFFFF]",
     iconBg: "bg-blue-300/10 ring-blue-300/20",
     items: [
       { text: "Making your Jobs", subtext: "Reach the correct candidates", clickable: false, icon: Megaphone },
     ],
+    hasClickHere: true,
   },
 ];
 
@@ -78,6 +81,14 @@ const JobsBlogsSection = () => {
                     </div>
                   </div>
                 ))}
+                {card.hasClickHere && (
+                  <a
+                    href="#"
+                    className="flex items-center justify-center p-3 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+                  >
+                    Click Here
+                  </a>
+                )}
               </div>
             </div>
           ))}

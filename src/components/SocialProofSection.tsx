@@ -35,16 +35,14 @@ const SocialProofSection = () => {
   const isUpcoming = featureIndex < upcomingFeatures.length;
   const currentFeature = allFeatures[featureIndex];
 
-  // Auto-scroll stats
   useEffect(() => {
     const interval = setInterval(() => {
       setStatIndex((prev) => (prev + 1) % stats.length);
-      statIntervalRef.current = DEFAULT_INTERVAL; // reset after manual
+      statIntervalRef.current = DEFAULT_INTERVAL;
     }, statIntervalRef.current);
     return () => clearInterval(interval);
   }, [statIndex]);
 
-  // Auto-scroll features
   useEffect(() => {
     const interval = setInterval(() => {
       setFeatureIndex((prev) => (prev + 1) % allFeatures.length);
@@ -77,7 +75,7 @@ const SocialProofSection = () => {
       <div className="container">
         <div className="grid grid-cols-2 gap-4 max-w-5xl mx-auto">
           {/* Left: Why JobletAI */}
-          <div className="flex rounded-xl border border-border overflow-hidden bg-card transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30">
+          <div className="flex rounded-xl border border-border overflow-hidden bg-[#DCFFFF] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30">
             <div className="w-[28%] flex items-center justify-center p-3 bg-primary relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)] border-r border-primary/20">
               <h3 className="text-xl font-extrabold leading-tight text-center">
                 <span className="text-primary-foreground">Why Joblet</span>
@@ -96,9 +94,9 @@ const SocialProofSection = () => {
                   <div className="p-2 rounded-lg bg-primary/10 ring-1 ring-primary/20 shrink-0">
                     <currentStat.icon className="h-5 w-5 text-primary" />
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col flex-1 text-center">
                     <span className="text-2xl font-extrabold tracking-tight text-foreground leading-none">{currentStat.value}</span>
-                    <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{currentStat.label}</span>
+                    <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground text-left">{currentStat.label}</span>
                   </div>
                 </div>
                 <button onClick={nextStat} className="p-1 rounded-full hover:bg-secondary text-muted-foreground hover:text-foreground transition-colors" aria-label="Next stat">
@@ -114,7 +112,7 @@ const SocialProofSection = () => {
           </div>
 
           {/* Right: Features */}
-          <div className="flex rounded-xl border border-border overflow-hidden bg-card transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30">
+          <div className="flex rounded-xl border border-border overflow-hidden bg-[#DCFFFF] transition-all duration-300 hover:shadow-xl hover:scale-[1.02] hover:border-primary/30">
             <div className="w-[28%] flex items-center justify-center p-3 bg-primary relative shadow-[4px_0_16px_-4px_hsl(217_91%_50%/0.15)] border-r border-primary/20">
               <div className="flex items-center gap-1">
                 <button onClick={prevFeature} className="p-0.5 rounded-full hover:bg-primary-foreground/20 text-primary-foreground/70 hover:text-primary-foreground transition-colors" aria-label="Previous label">
@@ -146,10 +144,10 @@ const SocialProofSection = () => {
                   <div className="p-2 rounded-lg bg-primary/10 ring-1 ring-primary/20 shrink-0">
                     <currentFeature.icon className="h-5 w-5 text-primary" />
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col flex-1 text-center">
                     <span className="text-sm font-extrabold tracking-tight text-foreground leading-tight">{currentFeature.name}</span>
                     {currentFeature.hasLearnMore && currentFeature.link && (
-                      <a href={currentFeature.link} className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:text-primary/80 transition-colors">
+                      <a href={currentFeature.link} className="inline-flex items-center justify-start gap-1 text-xs font-semibold text-primary hover:text-primary/80 transition-colors">
                         Learn More <span className="text-sm">→</span>
                       </a>
                     )}

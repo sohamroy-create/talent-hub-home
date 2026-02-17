@@ -1,4 +1,4 @@
-import { Sparkles, Zap, MessageSquare, Clock } from "lucide-react";
+import { Sparkles, Zap, MessageSquare, Clock, Send } from "lucide-react";
 import { useState, useEffect } from "react";
 
 interface CountdownProps {
@@ -42,6 +42,29 @@ const CountdownClock = ({ days }: CountdownProps) => {
   );
 };
 
+const SuggestionBox = () => {
+  const [value, setValue] = useState("");
+  
+  return (
+    <div className="flex items-end gap-1.5 mt-3">
+      <textarea
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        placeholder="Your suggestion..."
+        className="flex-1 text-xs rounded-md border border-primary/20 bg-background/60 px-2 py-1.5 resize-none focus:outline-none focus:ring-1 focus:ring-primary/30 placeholder:text-muted-foreground"
+        rows={2}
+      />
+      <button
+        onClick={() => { if (value.trim()) { setValue(""); } }}
+        className="flex flex-col items-center justify-center bg-primary text-primary-foreground rounded-md px-2 py-1 min-w-[36px] hover:bg-primary/90 transition-colors"
+        style={{ height: '42px' }}
+      >
+        <Send className="h-3.5 w-3.5" />
+      </button>
+    </div>
+  );
+};
+
 const cards = [
   {
     id: "applyai",
@@ -52,26 +75,29 @@ const cards = [
     text: "Applying for a job just got 83% easier!",
     subtext: "The more you apply, the less you need to apply. Curious?",
     countdownDays: 27,
+    hasSuggestion: false,
   },
   {
     id: "interviewai",
     header: "InterviewAI",
     icon: Zap,
-    bg: "bg-[#C9F6FF]",
+    bg: "bg-[#DCFFFF]",
     iconBg: "bg-sky-600/15 ring-sky-600/25",
     text: "Give AI Interviews without any hassle!",
     subtext: "Just send your AI avatar & Voila! Curious?",
     countdownDays: 43,
+    hasSuggestion: false,
   },
   {
     id: "suggestions",
     header: "Suggestions",
     icon: MessageSquare,
-    bg: "bg-[#97EBF4]",
+    bg: "bg-[#DCFFFF]",
     iconBg: "bg-indigo-600/15 ring-indigo-600/25",
     text: "Let us know what feature you want!",
     subtext: "And we will name the feature after you!",
     countdownDays: null,
+    hasSuggestion: true,
   },
 ];
 
@@ -102,6 +128,7 @@ const ApplyInterviewSection = () => {
                 </div>
               </div>
               {card.countdownDays && <CountdownClock days={card.countdownDays} />}
+              {card.hasSuggestion && <SuggestionBox />}
             </div>
           ))}
         </div>
