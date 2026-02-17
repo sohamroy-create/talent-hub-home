@@ -37,7 +37,7 @@ const cards = [
 
 const JobsBlogsSection = () => {
   return (
-    <section id="jobs" className="pt-10 pb-3 px-4">
+    <section id="jobs" className="pt-13 pb-3 px-4">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {cards.map((card) => (
