@@ -5,7 +5,7 @@ const cards = [
     id: "jobs",
     header: "Jobs",
     icon: Briefcase,
-    bg: "bg-[#8AABE8]",
+    bg: "",
     iconBg: "bg-blue-400/10 ring-blue-400/20",
     items: [
       { text: "Post a Job", subtext: "Source talent, Globally", clickable: true, icon: PenLine },
@@ -17,7 +17,7 @@ const cards = [
     id: "blogs",
     header: "Blogs",
     icon: BookOpen,
-    bg: "bg-[#8AABE8]",
+    bg: "",
     iconBg: "bg-sky-400/10 ring-sky-400/20",
     items: [
       { text: "Post a Blog", subtext: "Become a thought leader", clickable: false, icon: PenLine },
@@ -29,7 +29,7 @@ const cards = [
     id: "advertiseai",
     header: "AdvertiseAI",
     icon: Megaphone,
-    bg: "bg-[#8AABE8]",
+    bg: "",
     iconBg: "bg-blue-300/10 ring-blue-300/20",
     items: [
       { text: "Making your Jobs", subtext: "Reach the correct candidates", clickable: false, icon: Megaphone },
