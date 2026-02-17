@@ -77,7 +77,7 @@ const cards = [
 
 const ApplyInterviewSection = () => {
   return (
-    <section className="pt-3 pb-13 px-4">
+    <section className="pt-3 pb-24 px-4">
       <div className="container">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {cards.map((card) => (
