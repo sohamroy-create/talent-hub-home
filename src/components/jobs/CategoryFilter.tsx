@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronDown, ChevronRight } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const categories: { name: string; subcategories: string[] }[] = [
   {
@@ -66,39 +67,89 @@ const categories: { name: string; subcategories: string[] }[] = [
 
 const CategoryFilter = () => {
   const [expanded, setExpanded] = useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedSubs, setSelectedSubs] = useState<string[]>([]);
 
-  const toggle = (name: string) => {
+  const toggleExpand = (name: string) => {
     setExpanded((prev) =>
       prev.includes(name) ? prev.filter((n) => n !== name) : [...prev, name]
     );
+  };
+
+  const toggleCategory = (catName: string, subs: string[]) => {
+    const isSelected = selectedCategories.includes(catName);
+    if (isSelected) {
+      setSelectedCategories((prev) => prev.filter((c) => c !== catName));
+      setSelectedSubs((prev) => prev.filter((s) => !subs.includes(s)));
+    } else {
+      setSelectedCategories((prev) => [...prev, catName]);
+      setSelectedSubs((prev) => [...new Set([...prev, ...subs])]);
+    }
+  };
+
+  const toggleSub = (sub: string, catName: string, allSubs: string[]) => {
+    setSelectedSubs((prev) => {
+      const next = prev.includes(sub) ? prev.filter((s) => s !== sub) : [...prev, sub];
+      const allChecked = allSubs.every((s) => next.includes(s));
+      const anyChecked = allSubs.some((s) => next.includes(s));
+      setSelectedCategories((cats) => {
+        if (allChecked && !cats.includes(catName)) return [...cats, catName];
+        if (!allChecked && cats.includes(catName)) return cats.filter((c) => c !== catName);
+        return cats;
+      });
+      return next;
+    });
+  };
+
+  const isCategoryIndeterminate = (subs: string[], catName: string) => {
+    const anyChecked = subs.some((s) => selectedSubs.includes(s));
+    return anyChecked && !selectedCategories.includes(catName);
   };
 
   return (
     <div className="space-y-1">
       {categories.map((cat) => (
         <div key={cat.name}>
-          <button
-            onClick={() => toggle(cat.name)}
-            className="flex items-center gap-2 w-full text-left py-1.5 px-1 rounded hover:bg-accent transition-colors group"
-          >
-            {expanded.includes(cat.name) ? (
-              <ChevronDown className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
-            ) : (
-              <ChevronRight className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
-            )}
-            <span className="text-sm text-foreground group-hover:text-primary transition-colors leading-tight">
-              {cat.name}
-            </span>
-          </button>
+          <div className="flex items-center gap-2 py-1.5 px-1 rounded hover:bg-accent transition-colors group">
+            <Checkbox
+              checked={
+                selectedCategories.includes(cat.name)
+                  ? true
+                  : isCategoryIndeterminate(cat.subcategories, cat.name)
+                  ? "indeterminate"
+                  : false
+              }
+              onCheckedChange={() => toggleCategory(cat.name, cat.subcategories)}
+            />
+            <button
+              onClick={() => toggleExpand(cat.name)}
+              className="flex items-center gap-1.5 flex-1 text-left"
+            >
+              {expanded.includes(cat.name) ? (
+                <ChevronDown className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+              ) : (
+                <ChevronRight className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+              )}
+              <span className="text-sm text-foreground group-hover:text-primary transition-colors leading-tight">
+                {cat.name}
+              </span>
+            </button>
+          </div>
           {expanded.includes(cat.name) && (
-            <div className="ml-6 space-y-0.5 pb-1">
+            <div className="ml-8 space-y-1 pb-1">
               {cat.subcategories.map((sub) => (
-                <button
+                <label
                   key={sub}
-                  className="block w-full text-left text-xs text-muted-foreground hover:text-primary py-1 px-1 rounded hover:bg-accent/50 transition-colors"
+                  className="flex items-center gap-2.5 cursor-pointer py-1 px-1 rounded hover:bg-accent/50 transition-colors"
                 >
-                  {sub}
-                </button>
+                  <Checkbox
+                    checked={selectedSubs.includes(sub)}
+                    onCheckedChange={() => toggleSub(sub, cat.name, cat.subcategories)}
+                  />
+                  <span className="text-xs text-muted-foreground hover:text-primary transition-colors">
+                    {sub}
+                  </span>
+                </label>
               ))}
             </div>
           )}
