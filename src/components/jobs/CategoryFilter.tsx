@@ -74,39 +74,36 @@ const CategoryFilter = () => {
   };
 
   return (
-    <div>
-      <h3 className="text-sm font-semibold text-foreground mb-3">Categories</h3>
-      <div className="space-y-1">
-        {categories.map((cat) => (
-          <div key={cat.name}>
-            <button
-              onClick={() => toggle(cat.name)}
-              className="flex items-center gap-2 w-full text-left py-1.5 px-1 rounded hover:bg-accent transition-colors group"
-            >
-              {expanded.includes(cat.name) ? (
-                <ChevronDown className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
-              ) : (
-                <ChevronRight className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
-              )}
-              <span className="text-sm text-foreground group-hover:text-primary transition-colors leading-tight">
-                {cat.name}
-              </span>
-            </button>
-            {expanded.includes(cat.name) && (
-              <div className="ml-6 space-y-0.5 pb-1">
-                {cat.subcategories.map((sub) => (
-                  <button
-                    key={sub}
-                    className="block w-full text-left text-xs text-muted-foreground hover:text-primary py-1 px-1 rounded hover:bg-accent/50 transition-colors"
-                  >
-                    {sub}
-                  </button>
-                ))}
-              </div>
+    <div className="space-y-1">
+      {categories.map((cat) => (
+        <div key={cat.name}>
+          <button
+            onClick={() => toggle(cat.name)}
+            className="flex items-center gap-2 w-full text-left py-1.5 px-1 rounded hover:bg-accent transition-colors group"
+          >
+            {expanded.includes(cat.name) ? (
+              <ChevronDown className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+            ) : (
+              <ChevronRight className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
             )}
-          </div>
-        ))}
-      </div>
+            <span className="text-sm text-foreground group-hover:text-primary transition-colors leading-tight">
+              {cat.name}
+            </span>
+          </button>
+          {expanded.includes(cat.name) && (
+            <div className="ml-6 space-y-0.5 pb-1">
+              {cat.subcategories.map((sub) => (
+                <button
+                  key={sub}
+                  className="block w-full text-left text-xs text-muted-foreground hover:text-primary py-1 px-1 rounded hover:bg-accent/50 transition-colors"
+                >
+                  {sub}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
     </div>
   );
 };
