@@ -20,21 +20,18 @@ const EmploymentTypeFilter = () => {
   };
 
   return (
-    <div>
-      <h3 className="text-sm font-semibold text-foreground mb-3">Employment Type</h3>
-      <div className="space-y-2.5">
-        {employmentTypes.map((type) => (
-          <label key={type} className="flex items-center gap-2.5 cursor-pointer group">
-            <Checkbox
-              checked={selected.includes(type)}
-              onCheckedChange={() => toggle(type)}
-            />
-            <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-              {type}
-            </span>
-          </label>
-        ))}
-      </div>
+    <div className="space-y-2.5">
+      {employmentTypes.map((type) => (
+        <label key={type} className="flex items-center gap-2.5 cursor-pointer group">
+          <Checkbox
+            checked={selected.includes(type)}
+            onCheckedChange={() => toggle(type)}
+          />
+          <span className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+            {type}
+          </span>
+        </label>
+      ))}
     </div>
   );
 };
