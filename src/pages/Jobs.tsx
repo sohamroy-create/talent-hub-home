@@ -27,10 +27,12 @@ const Jobs = () => {
           {/* Employment type filter */}
           <div className="border-b border-border flex flex-col overflow-hidden">
             <h3 className="text-sm font-semibold text-foreground px-4 pt-4 pb-2 shrink-0">Employment Type</h3>
-            <div className="overflow-y-auto px-4 pb-4 scrollbar-hide">
+            <div className="overflow-y-auto max-h-[120px] px-4 pb-3 scrollbar-hide">
               <EmploymentTypeFilter />
             </div>
           </div>
+
+          <div className="h-3 shrink-0" />
 
           {/* Category filter */}
           <div className="flex-1 flex flex-col overflow-hidden">
