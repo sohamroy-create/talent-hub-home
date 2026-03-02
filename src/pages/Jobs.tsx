@@ -25,12 +25,13 @@ const Jobs = () => {
 
         {/* Filter toggle button - hugs left edge */}
         <div className="relative">
-          <button
+        <button
             onClick={() => setFilterOpen(true)}
-            className="flex items-center justify-center w-8 h-8 bg-primary text-primary-foreground rounded-br-lg shadow-md"
+            className="flex items-center gap-1 px-3 h-8 bg-primary text-primary-foreground rounded-br-lg shadow-md text-xs font-medium"
             aria-label="Open filters"
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-3.5 w-3.5" />
+            Filters
           </button>
         </div>
 
