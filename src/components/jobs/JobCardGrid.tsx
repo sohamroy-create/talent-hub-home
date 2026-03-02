@@ -55,17 +55,17 @@ const JobCard = ({ job }: { job: JobData }) => {
 
   return (
     <div
-      className="rounded-lg border border-border overflow-hidden hover:shadow-md hover:border-primary/30 transition-all grid grid-cols-2 grid-rows-2 min-h-[180px]"
+      className="rounded-lg border border-border overflow-hidden hover:shadow-md hover:border-primary/30 transition-all grid grid-cols-2 grid-rows-2 h-[170px]"
       style={{ backgroundColor: bgColor }}
     >
       {/* Section 1: Date, Title (top-left) */}
-      <div className="p-4 flex flex-col border-r border-border/40 border-b border-border/40">
+      <div className="p-4 flex flex-col">
         <span className="text-[10px] text-muted-foreground leading-tight">{job.date}</span>
         <h4 className="text-sm font-semibold text-foreground leading-snug my-auto">{job.title}</h4>
       </div>
 
       {/* Section 2: Share, Save, Logo (top-right) */}
-      <div className="p-4 flex flex-col items-end border-b border-border/40">
+      <div className="p-4 flex flex-col items-end">
         <div className="flex items-center gap-1.5 mb-auto">
           <button className="p-1.5 rounded hover:bg-background/60 transition-colors">
             <Share2 className="h-5 w-5 text-muted-foreground" />
@@ -74,13 +74,13 @@ const JobCard = ({ job }: { job: JobData }) => {
             <Bookmark className="h-5 w-5 text-muted-foreground" />
           </button>
         </div>
-        <div className="w-[52px] h-[52px] rounded-full bg-foreground text-primary-foreground flex items-center justify-center text-sm font-bold mt-auto self-start">
+        <div className="w-[52px] h-[52px] rounded-full bg-foreground text-primary-foreground flex items-center justify-center text-sm font-bold mt-auto">
           {job.logo}
         </div>
       </div>
 
       {/* Section 3: Company, Location (bottom-left) */}
-      <div className="p-4 flex flex-col justify-between border-r border-border/40">
+      <div className="p-4 flex flex-col justify-between">
         <span className="text-xs text-muted-foreground/80">{job.company}</span>
         <span className="text-[11px] text-muted-foreground leading-tight">{job.location}</span>
       </div>
