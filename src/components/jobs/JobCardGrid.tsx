@@ -68,16 +68,13 @@ const JobCard = ({ job }: { job: JobData }) => {
 
       {/* Section 2: Share, Save, Logo (top-right) */}
       <div className="p-4 flex flex-col items-end">
-        <div className="flex items-center gap-1.5 mb-auto">
+        <div className="flex items-center gap-1.5">
           <button className="p-1.5 rounded hover:bg-background/60 transition-colors">
-            <Share2 className="h-5 w-5 text-muted-foreground" />
+            <Share2 className="h-6 w-6 text-muted-foreground" />
           </button>
           <button className="p-1.5 rounded hover:bg-background/60 transition-colors">
-            <Bookmark className="h-5 w-5 text-muted-foreground" />
+            <Bookmark className="h-6 w-6 text-muted-foreground" />
           </button>
-        </div>
-        <div className="w-[52px] h-[52px] rounded-full bg-foreground text-primary-foreground flex items-center justify-center text-sm font-bold mt-auto">
-          {job.logo}
         </div>
       </div>
 
