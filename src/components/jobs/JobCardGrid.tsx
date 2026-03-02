@@ -58,30 +58,30 @@ const JobCard = ({ job }: { job: JobData }) => {
       className="rounded-lg border border-border overflow-hidden hover:shadow-md hover:border-primary/30 transition-all grid grid-cols-2 grid-rows-2 min-h-[180px]"
       style={{ backgroundColor: bgColor }}
     >
-      {/* Section 1: Date, Title, Company (top-left) */}
-      <div className="p-4 flex flex-col justify-between border-r border-border/40 border-b border-border/40">
+      {/* Section 1: Date, Title (top-left) */}
+      <div className="p-4 flex flex-col border-r border-border/40 border-b border-border/40">
         <span className="text-[10px] text-muted-foreground leading-tight">{job.date}</span>
-        <h4 className="text-sm font-semibold text-foreground leading-snug mt-1">{job.title}</h4>
-        <span className="text-xs text-muted-foreground/80 mt-auto">{job.company}</span>
+        <h4 className="text-sm font-semibold text-foreground leading-snug my-auto">{job.title}</h4>
       </div>
 
-      {/* Section 2: Logo, Share, Save (top-right) */}
+      {/* Section 2: Share, Save, Logo (top-right) */}
       <div className="p-4 flex flex-col items-end border-b border-border/40">
         <div className="flex items-center gap-1.5 mb-auto">
-          <button className="p-1 rounded hover:bg-background/60 transition-colors">
-            <Share2 className="h-3.5 w-3.5 text-muted-foreground" />
+          <button className="p-1.5 rounded hover:bg-background/60 transition-colors">
+            <Share2 className="h-5 w-5 text-muted-foreground" />
           </button>
-          <button className="p-1 rounded hover:bg-background/60 transition-colors">
-            <Bookmark className="h-3.5 w-3.5 text-muted-foreground" />
+          <button className="p-1.5 rounded hover:bg-background/60 transition-colors">
+            <Bookmark className="h-5 w-5 text-muted-foreground" />
           </button>
         </div>
-        <div className="w-10 h-10 rounded-full bg-foreground text-primary-foreground flex items-center justify-center text-sm font-bold mt-auto mx-auto">
+        <div className="w-[52px] h-[52px] rounded-full bg-foreground text-primary-foreground flex items-center justify-center text-sm font-bold mt-auto self-start">
           {job.logo}
         </div>
       </div>
 
-      {/* Section 3: Location (bottom-left) */}
-      <div className="p-4 flex flex-col justify-end border-r border-border/40">
+      {/* Section 3: Company, Location (bottom-left) */}
+      <div className="p-4 flex flex-col justify-between border-r border-border/40">
+        <span className="text-xs text-muted-foreground/80">{job.company}</span>
         <span className="text-[11px] text-muted-foreground leading-tight">{job.location}</span>
       </div>
 
