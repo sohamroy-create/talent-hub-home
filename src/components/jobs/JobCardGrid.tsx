@@ -61,7 +61,9 @@ const JobCard = ({ job }: { job: JobData }) => {
       {/* Section 1: Date, Title (top-left) */}
       <div className="p-4 flex flex-col">
         <span className="text-[10px] text-muted-foreground leading-tight">{job.date}</span>
-        <h4 className="text-sm font-semibold text-foreground leading-snug my-auto">{job.title}</h4>
+        <div className="flex-1 flex items-start pt-2">
+          <h4 className="text-sm font-semibold text-foreground leading-snug">{job.title}</h4>
+        </div>
       </div>
 
       {/* Section 2: Share, Save, Logo (top-right) */}
