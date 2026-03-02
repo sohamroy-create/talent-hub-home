@@ -1,15 +1,105 @@
-const JobCardGrid = () => {
-  const cards = Array.from({ length: 18 }, (_, i) => i + 1);
+import { Share2, Bookmark } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const categoryColors: Record<string, string> = {
+  "Artificial Intelligence (AI)": "hsl(217 91% 96%)",
+  "IT Services": "hsl(200 80% 95%)",
+  "Healthcare": "hsl(150 60% 95%)",
+  "Manufacturing & Production": "hsl(35 80% 95%)",
+  "Supply Chain": "hsl(45 70% 95%)",
+  "Infrastructure": "hsl(20 70% 95%)",
+  "Transport": "hsl(270 50% 96%)",
+  "Real Estate": "hsl(340 50% 96%)",
+  "Finance & Accounting": "hsl(160 50% 95%)",
+  "Consulting": "hsl(190 60% 95%)",
+  "Sales & Marketing": "hsl(10 70% 96%)",
+  "Hospitality": "hsl(30 60% 95%)",
+  "Media & Entertainment": "hsl(290 45% 96%)",
+  "Education": "hsl(100 50% 95%)",
+  "General Operations": "hsl(220 40% 96%)",
+};
+
+interface JobData {
+  id: number;
+  date: string;
+  title: string;
+  company: string;
+  location: string;
+  category: string;
+  logo: string;
+}
+
+const sampleJobs: JobData[] = [
+  { id: 1, date: "2 days ago", title: "Machine Learning Engineer", company: "DeepMind Technologies", location: "San Francisco, CA", category: "Artificial Intelligence (AI)", logo: "D" },
+  { id: 2, date: "5 days ago", title: "Full Stack Developer", company: "Stripe Inc.", location: "New York, NY", category: "IT Services", logo: "S" },
+  { id: 3, date: "1 day ago", title: "Clinical Research Associate", company: "Pfizer Global", location: "Boston, MA", category: "Healthcare", logo: "P" },
+  { id: 4, date: "3 days ago", title: "Production Engineer", company: "Tesla Manufacturing", location: "Austin, TX", category: "Manufacturing & Production", logo: "T" },
+  { id: 5, date: "4 days ago", title: "Supply Chain Analyst", company: "Amazon Logistics", location: "Seattle, WA", category: "Supply Chain", logo: "A" },
+  { id: 6, date: "6 days ago", title: "Civil Engineer", company: "AECOM Infrastructure", location: "Denver, CO", category: "Infrastructure", logo: "A" },
+  { id: 7, date: "1 day ago", title: "Financial Analyst", company: "Goldman Sachs", location: "Chicago, IL", category: "Finance & Accounting", logo: "G" },
+  { id: 8, date: "2 days ago", title: "Management Consultant", company: "McKinsey & Company", location: "Washington, DC", category: "Consulting", logo: "M" },
+  { id: 9, date: "3 days ago", title: "Digital Marketing Specialist", company: "HubSpot Marketing", location: "Remote", category: "Sales & Marketing", logo: "H" },
+  { id: 10, date: "7 days ago", title: "Hotel Operations Manager", company: "Marriott International", location: "Miami, FL", category: "Hospitality", logo: "M" },
+  { id: 11, date: "2 days ago", title: "Video Producer", company: "Netflix Studios", location: "Los Angeles, CA", category: "Media & Entertainment", logo: "N" },
+  { id: 12, date: "4 days ago", title: "Instructional Designer", company: "Coursera Education", location: "Mountain View, CA", category: "Education", logo: "C" },
+  { id: 13, date: "1 day ago", title: "NLP Engineer", company: "OpenAI Research", location: "San Francisco, CA", category: "Artificial Intelligence (AI)", logo: "O" },
+  { id: 14, date: "5 days ago", title: "DevOps Engineer", company: "Cloudflare Inc.", location: "Austin, TX", category: "IT Services", logo: "C" },
+  { id: 15, date: "3 days ago", title: "Transport Operations Manager", company: "FedEx Logistics", location: "Memphis, TN", category: "Transport", logo: "F" },
+  { id: 16, date: "6 days ago", title: "Real Estate Analyst", company: "CBRE Group", location: "Dallas, TX", category: "Real Estate", logo: "C" },
+  { id: 17, date: "2 days ago", title: "HR Manager", company: "Workday Solutions", location: "Pleasanton, CA", category: "General Operations", logo: "W" },
+  { id: 18, date: "4 days ago", title: "Pharmacist", company: "CVS Health Corp", location: "Hartford, CT", category: "Healthcare", logo: "C" },
+];
+
+const JobCard = ({ job }: { job: JobData }) => {
+  const bgColor = categoryColors[job.category] || "hsl(0 0% 97%)";
 
   return (
-    <div className="grid grid-cols-3 gap-4">
-      {cards.map((id) => (
-        <div
-          key={id}
-          className="rounded-lg border border-border bg-card p-5 min-h-[180px] flex items-center justify-center hover:shadow-md hover:border-primary/30 transition-all"
-        >
-          <span className="text-sm text-muted-foreground">Job Card {id}</span>
+    <div
+      className="rounded-lg border border-border overflow-hidden hover:shadow-md hover:border-primary/30 transition-all grid grid-cols-2 grid-rows-2 min-h-[180px]"
+      style={{ backgroundColor: bgColor }}
+    >
+      {/* Section 1: Date, Title, Company (top-left) */}
+      <div className="p-4 flex flex-col justify-between border-r border-border/40 border-b border-border/40">
+        <span className="text-[10px] text-muted-foreground leading-tight">{job.date}</span>
+        <h4 className="text-sm font-semibold text-foreground leading-snug mt-1">{job.title}</h4>
+        <span className="text-xs text-muted-foreground/80 mt-auto">{job.company}</span>
+      </div>
+
+      {/* Section 2: Logo, Share, Save (top-right) */}
+      <div className="p-4 flex flex-col items-end border-b border-border/40">
+        <div className="flex items-center gap-1.5 mb-auto">
+          <button className="p-1 rounded hover:bg-background/60 transition-colors">
+            <Share2 className="h-3.5 w-3.5 text-muted-foreground" />
+          </button>
+          <button className="p-1 rounded hover:bg-background/60 transition-colors">
+            <Bookmark className="h-3.5 w-3.5 text-muted-foreground" />
+          </button>
         </div>
+        <div className="w-10 h-10 rounded-full bg-foreground text-primary-foreground flex items-center justify-center text-sm font-bold mt-auto mx-auto">
+          {job.logo}
+        </div>
+      </div>
+
+      {/* Section 3: Location (bottom-left) */}
+      <div className="p-4 flex flex-col justify-end border-r border-border/40">
+        <span className="text-[11px] text-muted-foreground leading-tight">{job.location}</span>
+      </div>
+
+      {/* Section 4: Apply button (bottom-right) */}
+      <div className="p-4 flex items-end justify-end">
+        <Button size="sm" className="text-xs h-8 px-4 rounded-md">
+          Apply Now
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+const JobCardGrid = () => {
+  return (
+    <div className="grid grid-cols-3 gap-4">
+      {sampleJobs.map((job) => (
+        <JobCard key={job.id} job={job} />
       ))}
     </div>
   );
