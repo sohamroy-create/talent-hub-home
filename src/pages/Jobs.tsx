@@ -1,11 +1,50 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import JobsSearchBar from "@/components/jobs/JobsSearchBar";
 import JobsDropdownFilters from "@/components/jobs/JobsDropdownFilters";
 import EmploymentTypeFilter from "@/components/jobs/EmploymentTypeFilter";
 import CategoryFilter from "@/components/jobs/CategoryFilter";
 import JobCardGrid from "@/components/jobs/JobCardGrid";
+import MobileFilterSheet from "@/components/jobs/MobileFilterSheet";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { ChevronRight } from "lucide-react";
 
 const Jobs = () => {
+  const isMobile = useIsMobile();
+  const [filterOpen, setFilterOpen] = useState(false);
+
+  if (isMobile) {
+    return (
+      <div className="h-screen flex flex-col bg-background">
+        <Header />
+
+        {/* Full-width search bar */}
+        <div className="px-4 py-3 border-b border-border">
+          <JobsSearchBar />
+        </div>
+
+        {/* Filter toggle button - hugs left edge */}
+        <div className="relative">
+          <button
+            onClick={() => setFilterOpen(true)}
+            className="flex items-center justify-center w-8 h-8 bg-primary text-primary-foreground rounded-br-lg shadow-md"
+            aria-label="Open filters"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+
+        {/* Mobile filter sheet */}
+        <MobileFilterSheet open={filterOpen} onOpenChange={setFilterOpen} />
+
+        {/* Job cards */}
+        <main className="flex-1 overflow-y-auto p-4 scrollbar-hide">
+          <JobCardGrid />
+        </main>
+      </div>
+    );
+  }
+
   return (
     <div className="h-screen flex flex-col bg-background">
       <Header />
