@@ -1,4 +1,5 @@
-import { Share2, Bookmark } from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { Share2, Bookmark, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const categoryColors: Record<string, string> = {
@@ -26,29 +27,61 @@ interface JobData {
   company: string;
   location: string;
   category: string;
-  logo: string;
 }
 
-const sampleJobs: JobData[] = [
-  { id: 1, date: "2 days ago", title: "Machine Learning Engineer", company: "DeepMind Technologies", location: "San Francisco, CA", category: "Artificial Intelligence (AI)", logo: "D" },
-  { id: 2, date: "5 days ago", title: "Full Stack Developer", company: "Stripe Inc.", location: "New York, NY", category: "IT Services", logo: "S" },
-  { id: 3, date: "1 day ago", title: "Clinical Research Associate", company: "Pfizer Global", location: "Boston, MA", category: "Healthcare", logo: "P" },
-  { id: 4, date: "3 days ago", title: "Production Engineer", company: "Tesla Manufacturing", location: "Austin, TX", category: "Manufacturing & Production", logo: "T" },
-  { id: 5, date: "4 days ago", title: "Supply Chain Analyst", company: "Amazon Logistics", location: "Seattle, WA", category: "Supply Chain", logo: "A" },
-  { id: 6, date: "6 days ago", title: "Civil Engineer", company: "AECOM Infrastructure", location: "Denver, CO", category: "Infrastructure", logo: "A" },
-  { id: 7, date: "1 day ago", title: "Financial Analyst", company: "Goldman Sachs", location: "Chicago, IL", category: "Finance & Accounting", logo: "G" },
-  { id: 8, date: "2 days ago", title: "Management Consultant", company: "McKinsey & Company", location: "Washington, DC", category: "Consulting", logo: "M" },
-  { id: 9, date: "3 days ago", title: "Digital Marketing Specialist", company: "HubSpot Marketing", location: "Remote", category: "Sales & Marketing", logo: "H" },
-  { id: 10, date: "7 days ago", title: "Hotel Operations Manager", company: "Marriott International", location: "Miami, FL", category: "Hospitality", logo: "M" },
-  { id: 11, date: "2 days ago", title: "Video Producer", company: "Netflix Studios", location: "Los Angeles, CA", category: "Media & Entertainment", logo: "N" },
-  { id: 12, date: "4 days ago", title: "Instructional Designer", company: "Coursera Education", location: "Mountain View, CA", category: "Education", logo: "C" },
-  { id: 13, date: "1 day ago", title: "NLP Engineer", company: "OpenAI Research", location: "San Francisco, CA", category: "Artificial Intelligence (AI)", logo: "O" },
-  { id: 14, date: "5 days ago", title: "DevOps Engineer", company: "Cloudflare Inc.", location: "Austin, TX", category: "IT Services", logo: "C" },
-  { id: 15, date: "3 days ago", title: "Transport Operations Manager", company: "FedEx Logistics", location: "Memphis, TN", category: "Transport", logo: "F" },
-  { id: 16, date: "6 days ago", title: "Real Estate Analyst", company: "CBRE Group", location: "Dallas, TX", category: "Real Estate", logo: "C" },
-  { id: 17, date: "2 days ago", title: "HR Manager", company: "Workday Solutions", location: "Pleasanton, CA", category: "General Operations", logo: "W" },
-  { id: 18, date: "4 days ago", title: "Pharmacist", company: "CVS Health Corp", location: "Hartford, CT", category: "Healthcare", logo: "C" },
+const titles = [
+  "Machine Learning Engineer", "Full Stack Developer", "Clinical Research Associate",
+  "Production Engineer", "Supply Chain Analyst", "Civil Engineer", "Financial Analyst",
+  "Management Consultant", "Digital Marketing Specialist", "Hotel Operations Manager",
+  "Video Producer", "Instructional Designer", "NLP Engineer", "DevOps Engineer",
+  "Transport Operations Manager", "Real Estate Analyst", "HR Manager", "Pharmacist",
+  "Data Scientist", "Cloud Engineer", "Cybersecurity Analyst", "UX Designer",
+  "Product Manager", "Business Analyst", "AI Research Scientist", "Backend Developer",
+  "Frontend Developer", "Quality Control Engineer", "Logistics Coordinator",
+  "Brand Strategist", "Content Writer", "Account Manager", "Sales Executive",
 ];
+
+const companies = [
+  "DeepMind Technologies", "Stripe Inc.", "Pfizer Global", "Tesla Manufacturing",
+  "Amazon Logistics", "AECOM Infrastructure", "Goldman Sachs", "McKinsey & Company",
+  "HubSpot Marketing", "Marriott International", "Netflix Studios", "Coursera Education",
+  "OpenAI Research", "Cloudflare Inc.", "FedEx Logistics", "CBRE Group",
+  "Workday Solutions", "CVS Health Corp", "Google LLC", "Meta Platforms",
+  "Apple Inc.", "Microsoft Corp", "Spotify AB", "Airbnb Inc.",
+];
+
+const locations = [
+  "San Francisco, CA", "New York, NY", "Boston, MA", "Austin, TX",
+  "Seattle, WA", "Denver, CO", "Chicago, IL", "Washington, DC",
+  "Remote", "Miami, FL", "Los Angeles, CA", "Mountain View, CA",
+  "Memphis, TN", "Dallas, TX", "Pleasanton, CA", "Hartford, CT",
+  "Portland, OR", "Atlanta, GA", "Phoenix, AZ", "San Diego, CA",
+];
+
+const categoryNames = Object.keys(categoryColors);
+
+const dates = [
+  "1 day ago", "2 days ago", "3 days ago", "4 days ago",
+  "5 days ago", "6 days ago", "7 days ago", "1 week ago", "2 weeks ago",
+];
+
+function generateJobs(startId: number, count: number): JobData[] {
+  const jobs: JobData[] = [];
+  for (let i = 0; i < count; i++) {
+    const id = startId + i;
+    jobs.push({
+      id,
+      date: dates[id % dates.length],
+      title: titles[id % titles.length],
+      company: companies[id % companies.length],
+      location: locations[id % locations.length],
+      category: categoryNames[id % categoryNames.length],
+    });
+  }
+  return jobs;
+}
+
+const BATCH_SIZE = 18;
 
 const JobCard = ({ job }: { job: JobData }) => {
   const bgColor = categoryColors[job.category] || "hsl(0 0% 97%)";
@@ -66,7 +99,7 @@ const JobCard = ({ job }: { job: JobData }) => {
         </div>
       </div>
 
-      {/* Section 2: Share, Save, Logo (top-right) */}
+      {/* Section 2: Share, Save (top-right) */}
       <div className="p-4 flex flex-col items-end">
         <div className="flex items-center gap-1.5">
           <button className="p-1.5 rounded hover:bg-background/60 transition-colors">
@@ -95,11 +128,48 @@ const JobCard = ({ job }: { job: JobData }) => {
 };
 
 const JobCardGrid = () => {
+  const [jobs, setJobs] = useState<JobData[]>(() => generateJobs(1, BATCH_SIZE));
+  const [loading, setLoading] = useState(false);
+  const sentinelRef = useRef<HTMLDivElement>(null);
+
+  const loadMore = useCallback(() => {
+    setLoading(true);
+    // Simulate network delay
+    setTimeout(() => {
+      setJobs((prev) => [...prev, ...generateJobs(prev.length + 1, BATCH_SIZE)]);
+      setLoading(false);
+    }, 400);
+  }, []);
+
+  useEffect(() => {
+    const sentinel = sentinelRef.current;
+    if (!sentinel) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && !loading) {
+          loadMore();
+        }
+      },
+      { rootMargin: "300px" }
+    );
+
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [loadMore, loading]);
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {sampleJobs.map((job) => (
-        <JobCard key={job.id} job={job} />
-      ))}
+    <div>
+      <p className="text-xs text-muted-foreground mb-4">Showing {jobs.length.toLocaleString()} of 300,000+ jobs</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {jobs.map((job) => (
+          <JobCard key={job.id} job={job} />
+        ))}
+      </div>
+      {/* Sentinel for infinite scroll */}
+      <div ref={sentinelRef} className="flex justify-center py-8">
+        {loading && <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />}
+      </div>
     </div>
   );
 };
