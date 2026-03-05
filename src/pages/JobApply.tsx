@@ -168,7 +168,7 @@ const JobApply = () => {
                   }`}>
                     {job.title}
                   </h1>
-                  <div>
+                  <div className="mt-4">
                     <p className="text-base md:text-lg text-muted-foreground flex items-center gap-1.5">
                       <Building2 className="h-4 w-4 shrink-0" />
                       {job.company}
@@ -183,7 +183,7 @@ const JobApply = () => {
                         {job.jobType}
                       </span>
                     </div>
-                    <p className="text-sm font-medium text-foreground mt-3">
+                    <p className="text-sm font-medium text-primary mt-3">
                       $180,000 - $250,000 / year
                     </p>
                     <p className="text-xs text-muted-foreground/70 mt-2 flex items-center gap-1.5">
