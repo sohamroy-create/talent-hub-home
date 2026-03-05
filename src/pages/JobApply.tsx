@@ -183,7 +183,10 @@ const JobApply = () => {
                         {job.jobType}
                       </span>
                     </div>
-                    <p className="text-xs text-muted-foreground/70 mt-3 flex items-center gap-1.5">
+                    <p className="text-sm font-medium text-foreground mt-3">
+                      $180,000 - $250,000 / year
+                    </p>
+                    <p className="text-xs text-muted-foreground/70 mt-2 flex items-center gap-1.5">
                       <Clock className="h-3 w-3" />
                       {job.datePosted}
                     </p>
@@ -191,7 +194,7 @@ const JobApply = () => {
                 </div>
 
                 {/* Right side: icons + stats + apply */}
-                <div className="flex flex-col items-end gap-3 shrink-0">
+                <div className="flex flex-col items-end justify-between shrink-0">
                   <div className="flex items-center gap-2">
                     <button className="p-3 rounded-lg hover:bg-muted transition-colors">
                       <Share2 className="h-7 w-7 text-muted-foreground" />
