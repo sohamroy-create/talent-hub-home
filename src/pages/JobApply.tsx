@@ -171,8 +171,13 @@ const JobApply = () => {
                 </p>
               </div>
 
-              {/* Bottom-right: Apply */}
-              <div className="flex justify-end mt-8">
+              {/* Bottom-right: Stats + Apply */}
+              <div className="flex flex-col items-end mt-8 gap-2">
+                <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                  <span className="font-medium">1,247 people applied</span>
+                  <span>•</span>
+                  <span className="text-primary font-semibold">Top 12% of candidates</span>
+                </div>
                 <Button size="lg" className="px-8">
                   Apply Now
                 </Button>
