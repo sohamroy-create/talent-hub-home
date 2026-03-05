@@ -264,12 +264,15 @@ const JobApply = () => {
 
             {/* MOBILE: Horizontal Job Suggestions between header and details */}
             <div className="lg:hidden">
-              <div className="flex items-stretch gap-3 overflow-x-auto pb-1">
-                <div className="shrink-0 w-[28%] rounded-lg bg-primary flex items-center justify-center px-3">
-                  <span className="text-xs font-semibold text-primary-foreground text-center leading-tight">Similar Jobs For You</span>
+              <div className="flex items-center gap-2 mb-2">
+                <div className="rounded-md bg-primary px-3 py-1">
+                  <span className="text-[11px] font-semibold text-primary-foreground whitespace-nowrap">Similar Jobs For You</span>
                 </div>
+                <div className="h-px flex-1 bg-border" />
+              </div>
+              <div className="flex gap-2.5 overflow-x-auto pb-1">
                 {suggestions.map((s) => (
-                  <div key={s.id} className="shrink-0 w-[200px]">
+                  <div key={s.id} className="shrink-0 w-[180px]">
                     <SuggestionCard job={s} />
                   </div>
                 ))}
