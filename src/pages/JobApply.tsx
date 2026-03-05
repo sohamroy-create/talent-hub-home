@@ -151,9 +151,9 @@ const JobApply = () => {
               {/* Back button on top border */}
               <Link
                 to="/jobs"
-                className="absolute -top-[14px] left-6 inline-flex items-center gap-1 text-sm font-medium text-primary-foreground bg-primary px-3 py-1 rounded-md hover:bg-primary/90 transition-colors"
+                className="absolute -top-[10px] left-4 inline-flex items-center gap-0.5 text-[11px] font-medium text-primary-foreground bg-primary px-2 py-0.5 rounded hover:bg-primary/90 transition-colors"
               >
-                <ChevronLeft className="h-4 w-4" />
+                <ChevronLeft className="h-3 w-3" />
                 Back to Jobs
               </Link>
 
