@@ -106,10 +106,10 @@ const SuggestionCard = ({ job }: { job: typeof suggestions[0] }) => (
     to={`/jobs/${job.id}`}
     className="block rounded-lg border border-border p-4 hover:shadow-md hover:border-primary/30 transition-all bg-card"
   >
-    <span className="text-[10px] text-muted-foreground">{job.date}</span>
-    <h4 className="text-sm font-semibold text-foreground mt-1 leading-snug">{job.title}</h4>
+    <h4 className="text-sm font-semibold text-foreground leading-snug">{job.title}</h4>
     <p className="text-xs text-muted-foreground mt-1">{job.company}</p>
     <p className="text-[11px] text-muted-foreground mt-0.5">{job.location}</p>
+    <span className="text-[10px] text-muted-foreground mt-1 block">{job.date}</span>
   </Link>
 );
 
