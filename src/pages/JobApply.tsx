@@ -111,22 +111,24 @@ const DetailSection = ({ title, content, mobileLines = 4 }: DetailSectionProps) 
 };
 
 const SuggestionCard = ({ job }: { job: typeof suggestions[0] }) => (
-  <div className="rounded-lg border border-border p-4 hover:shadow-md hover:border-primary/30 transition-all bg-card">
+  <div className="rounded-lg border border-border p-3 md:p-4 hover:shadow-md hover:border-primary/30 transition-all bg-card h-[130px] flex flex-col justify-between">
     <div className="flex justify-between items-start">
       <Link to={`/jobs/${job.id}`} className="flex-1 min-w-0">
-        <h4 className="text-sm font-semibold text-foreground leading-snug">{job.title}</h4>
-        <p className="text-xs text-muted-foreground mt-1">{job.company}</p>
-        <p className="text-[11px] text-muted-foreground mt-0.5">{job.location}</p>
-        <span className="text-[10px] text-muted-foreground mt-1 block">{job.date}</span>
+        <h4 className="text-xs md:text-sm font-semibold text-foreground leading-snug line-clamp-2">{job.title}</h4>
+        <p className="text-[11px] text-muted-foreground mt-1">{job.company}</p>
       </Link>
-      <div className="flex items-center gap-1 shrink-0 ml-2">
-        <button className="p-1.5 rounded-md hover:bg-muted transition-colors">
-          <Share2 className="h-4 w-4 text-muted-foreground" />
+      <div className="flex items-center gap-0.5 shrink-0 ml-1">
+        <button className="p-1 rounded-md hover:bg-muted transition-colors">
+          <Share2 className="h-3.5 w-3.5 text-muted-foreground" />
         </button>
-        <button className="p-1.5 rounded-md hover:bg-muted transition-colors">
-          <Bookmark className="h-4 w-4 text-muted-foreground" />
+        <button className="p-1 rounded-md hover:bg-muted transition-colors">
+          <Bookmark className="h-3.5 w-3.5 text-muted-foreground" />
         </button>
       </div>
+    </div>
+    <div className="flex justify-between items-end">
+      <p className="text-[10px] text-muted-foreground">{job.location}</p>
+      <span className="text-[10px] text-muted-foreground">{job.date}</span>
     </div>
   </div>
 );
@@ -264,7 +266,7 @@ const JobApply = () => {
             <div className="lg:hidden">
               <div className="flex items-stretch gap-3 overflow-x-auto pb-1">
                 <div className="shrink-0 w-[28%] rounded-lg bg-primary flex items-center justify-center px-3">
-                  <span className="text-xs font-semibold text-primary-foreground text-center leading-tight">Job Suggestions</span>
+                  <span className="text-xs font-semibold text-primary-foreground text-center leading-tight">Similar Jobs For You</span>
                 </div>
                 {suggestions.map((s) => (
                   <div key={s.id} className="shrink-0 w-[200px]">
@@ -286,7 +288,7 @@ const JobApply = () => {
           {/* RIGHT: Suggestions sidebar (col 4) - desktop only */}
           <div className="hidden lg:block lg:col-span-1">
             <div className="rounded-md bg-primary h-11 flex items-center justify-center mb-4">
-              <span className="text-sm font-semibold text-primary-foreground">Job Suggestions</span>
+              <span className="text-sm font-semibold text-primary-foreground">Similar Jobs For You</span>
             </div>
             <div className="space-y-3">
               {suggestions.map((s) => (
