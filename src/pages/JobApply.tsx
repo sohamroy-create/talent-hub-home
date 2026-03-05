@@ -202,7 +202,9 @@ const JobApply = () => {
 
           {/* RIGHT: Suggestions sidebar (col 4) */}
           <div className="lg:col-span-1">
-            <h3 className="text-sm font-semibold text-foreground mb-4">Similar Jobs</h3>
+            <div className="rounded-md border border-border bg-muted/50 h-11 flex items-center justify-center mb-4">
+              <span className="text-sm font-semibold text-foreground">Job Suggestions</span>
+            </div>
             <div className="space-y-3">
               {suggestions.map((s) => (
                 <SuggestionCard key={s.id} job={s} />
