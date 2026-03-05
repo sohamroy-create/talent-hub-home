@@ -135,27 +135,17 @@ const JobApply = () => {
           <div className="lg:col-span-3 space-y-8">
 
             {/* HEADER SECTION */}
-            <div className="rounded-xl border border-border bg-card p-8 md:p-10 relative">
-              {/* Top-right: Share & Save */}
-              <div className="absolute top-8 right-8 md:top-10 md:right-10 flex items-center gap-2">
-                <button className="p-2 rounded-lg hover:bg-muted transition-colors">
-                  <Share2 className="h-5 w-5 text-muted-foreground" />
-                </button>
-                <button className="p-2 rounded-lg hover:bg-muted transition-colors">
-                  <Bookmark className="h-5 w-5 text-muted-foreground" />
-                </button>
-              </div>
-
+            <div className="rounded-xl border border-border bg-card p-6 md:p-8 relative flex items-center justify-between">
               {/* Job info */}
-              <div className="pr-28">
+              <div className="pr-8">
                 <h1 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
                   {job.title}
                 </h1>
-                <p className="text-base md:text-lg text-muted-foreground mt-3 flex items-center gap-1.5">
+                <p className="text-base md:text-lg text-muted-foreground mt-4 flex items-center gap-1.5">
                   <Building2 className="h-4 w-4 shrink-0" />
                   {job.company}
                 </p>
-                <div className="flex flex-wrap items-center gap-4 mt-3 text-sm text-muted-foreground">
+                <div className="flex flex-wrap items-center gap-4 mt-4 text-sm text-muted-foreground">
                   <span className="flex items-center gap-1.5">
                     <MapPin className="h-3.5 w-3.5" />
                     {job.location}
@@ -165,21 +155,33 @@ const JobApply = () => {
                     {job.jobType}
                   </span>
                 </div>
-                <p className="text-xs text-muted-foreground/70 mt-3 flex items-center gap-1.5">
+                <p className="text-xs text-muted-foreground/70 mt-4 flex items-center gap-1.5">
                   <Clock className="h-3 w-3" />
                   {job.datePosted}
                 </p>
               </div>
 
-              {/* Bottom-right: Stats + Apply */}
-              <div className="flex flex-col items-end mt-8 gap-2">
-                <div className="flex flex-col items-end text-xs text-muted-foreground gap-0.5">
-                  <span className="font-medium">1,247 people applied</span>
-                  <span className="text-primary font-semibold">Top 12% of candidates</span>
+              {/* Right side: icons + stats + apply */}
+              <div className="flex flex-col items-end gap-3 shrink-0">
+                <div className="flex items-center gap-2">
+                  <button className="p-3 rounded-lg hover:bg-muted transition-colors">
+                    <Share2 className="h-7 w-7 text-muted-foreground" />
+                  </button>
+                  <button className="p-3 rounded-lg hover:bg-muted transition-colors">
+                    <Bookmark className="h-7 w-7 text-muted-foreground" />
+                  </button>
                 </div>
-                <Button size="lg" className="px-8">
-                  Apply Now
-                </Button>
+                <div className="flex flex-col items-stretch gap-2 w-full">
+                  <div className="rounded-md border border-border bg-muted/50 px-8 h-11 flex items-center justify-center">
+                    <span className="text-xs font-medium text-muted-foreground">1,247 people applied</span>
+                  </div>
+                  <div className="rounded-md border border-primary/30 bg-primary/5 px-8 h-11 flex items-center justify-center">
+                    <span className="text-xs font-semibold text-primary">Top 12% of candidates</span>
+                  </div>
+                  <Button size="lg" className="px-8">
+                    Apply Now
+                  </Button>
+                </div>
               </div>
             </div>
 
