@@ -238,6 +238,9 @@ const JobApply = () => {
                         {job.jobType}
                       </span>
                     </div>
+                    <p className="text-xs font-medium text-primary mt-1.5">
+                      $180,000 - $250,000 / year
+                    </p>
                     <p className="text-[10px] text-muted-foreground/70 mt-1.5 flex items-center gap-1">
                       <Clock className="h-2.5 w-2.5" />
                       {job.datePosted}
