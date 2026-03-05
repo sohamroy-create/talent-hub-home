@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 import { Share2, Bookmark, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -84,12 +85,14 @@ function generateJobs(startId: number, count: number): JobData[] {
 const BATCH_SIZE = 18;
 
 const JobCard = ({ job }: { job: JobData }) => {
+  const navigate = useNavigate();
   const bgColor = categoryColors[job.category] || "hsl(0 0% 97%)";
 
   return (
     <div
-      className="rounded-lg border border-border overflow-hidden hover:shadow-md hover:border-primary/30 transition-all grid grid-cols-2 grid-rows-2 h-[170px]"
+      className="rounded-lg border border-border overflow-hidden hover:shadow-md hover:border-primary/30 transition-all grid grid-cols-2 grid-rows-2 h-[170px] cursor-pointer"
       style={{ backgroundColor: bgColor }}
+      onClick={() => navigate(`/jobs/${job.id}`)}
     >
       {/* Section 1: Date, Title (top-left) */}
       <div className="p-4 flex flex-col">
@@ -102,10 +105,10 @@ const JobCard = ({ job }: { job: JobData }) => {
       {/* Section 2: Share, Save (top-right) */}
       <div className="p-4 flex flex-col items-end">
         <div className="flex items-center gap-1.5">
-          <button className="p-1.5 rounded hover:bg-background/60 transition-colors">
+          <button className="p-1.5 rounded hover:bg-background/60 transition-colors" onClick={(e) => e.stopPropagation()}>
             <Share2 className="h-6 w-6 text-muted-foreground" />
           </button>
-          <button className="p-1.5 rounded hover:bg-background/60 transition-colors">
+          <button className="p-1.5 rounded hover:bg-background/60 transition-colors" onClick={(e) => e.stopPropagation()}>
             <Bookmark className="h-6 w-6 text-muted-foreground" />
           </button>
         </div>
@@ -119,7 +122,7 @@ const JobCard = ({ job }: { job: JobData }) => {
 
       {/* Section 4: Apply button (bottom-right) */}
       <div className="p-4 flex items-end justify-end">
-        <Button size="sm" className="text-xs h-8 px-4 rounded-md">
+        <Button size="sm" className="text-xs h-8 px-4 rounded-md" onClick={(e) => e.stopPropagation()}>
           Apply Now
         </Button>
       </div>
