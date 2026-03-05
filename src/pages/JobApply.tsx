@@ -60,21 +60,30 @@ const SECTION_HEIGHT = "min-h-[220px]";
 interface DetailSectionProps {
   title: string;
   content: string;
+  mobileLines?: number;
 }
 
-const DetailSection = ({ title, content }: DetailSectionProps) => {
+const DetailSection = ({ title, content, mobileLines = 4 }: DetailSectionProps) => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const lines = content.split("\n").filter(Boolean);
-  const needsTruncation = lines.length > 6;
-  const displayContent = needsTruncation ? lines.slice(0, 6).join("\n") : content;
+  // Desktop: show 6 lines, Mobile: show fewer lines
+  const desktopTruncation = lines.length > 6;
+  const mobileTruncation = lines.length > mobileLines;
+  const desktopContent = desktopTruncation ? lines.slice(0, 6).join("\n") : content;
+  const mobileContent = mobileTruncation ? lines.slice(0, mobileLines).join("\n") : content;
 
   return (
-    <div className={`${SECTION_HEIGHT} flex flex-col rounded-xl border border-border bg-card p-6`}>
-      <h3 className="text-lg font-semibold text-foreground mb-3">{title}</h3>
-      <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed flex-1">
-        {displayContent}
+    <div className={`lg:${SECTION_HEIGHT} flex flex-col rounded-xl border border-border bg-card p-4 md:p-6`}>
+      <h3 className="text-base md:text-lg font-semibold text-foreground mb-2 md:mb-3">{title}</h3>
+      {/* Desktop content */}
+      <p className="hidden md:block text-sm text-muted-foreground whitespace-pre-line leading-relaxed flex-1">
+        {desktopContent}
       </p>
-      {needsTruncation && (
+      {/* Mobile content */}
+      <p className="md:hidden text-xs text-muted-foreground whitespace-pre-line leading-relaxed flex-1">
+        {mobileContent}
+      </p>
+      {((desktopTruncation) || (mobileTruncation)) && (
         <>
           <Button
             variant="link"
@@ -130,13 +139,13 @@ const JobApply = () => {
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 py-6">
         {/* Desktop: 4-column grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 md:gap-6">
 
           {/* LEFT: Header + Job Details (cols 1-3) */}
-          <div className="lg:col-span-3 space-y-8">
+          <div className="lg:col-span-3 space-y-4 md:space-y-8">
 
             {/* HEADER SECTION */}
-            <div className="rounded-xl border border-border bg-card p-6 md:p-8 relative flex justify-between">
+            <div className="rounded-xl border border-border bg-card p-4 md:p-8 relative">
               {/* Back button on top border */}
               <Link
                 to="/jobs"
@@ -145,72 +154,137 @@ const JobApply = () => {
                 <ChevronLeft className="h-4 w-4" />
                 Back to Jobs
               </Link>
-              {/* Job info */}
-              <div className="pr-8 flex flex-col justify-between">
-                <h1 className={`font-bold text-foreground leading-tight ${
-                  job.title.length < 20 ? 'text-3xl md:text-4xl' : 
-                  job.title.length < 35 ? 'text-2xl md:text-3xl' : 
-                  'text-xl md:text-2xl'
-                }`}>
-                  {job.title}
-                </h1>
-                <div>
-                  <p className="text-base md:text-lg text-muted-foreground flex items-center gap-1.5">
-                    <Building2 className="h-4 w-4 shrink-0" />
-                    {job.company}
-                  </p>
-                  <div className="flex flex-wrap items-center gap-4 mt-3 text-sm text-muted-foreground">
-                    <span className="flex items-center gap-1.5">
-                      <MapPin className="h-3.5 w-3.5" />
-                      {job.location}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <Briefcase className="h-3.5 w-3.5" />
-                      {job.jobType}
-                    </span>
+
+              {/* Desktop layout */}
+              <div className="hidden md:flex justify-between">
+                {/* Job info */}
+                <div className="pr-8 flex flex-col justify-between">
+                  <h1 className={`font-bold text-foreground leading-tight ${
+                    job.title.length < 20 ? 'text-3xl md:text-4xl' : 
+                    job.title.length < 35 ? 'text-2xl md:text-3xl' : 
+                    'text-xl md:text-2xl'
+                  }`}>
+                    {job.title}
+                  </h1>
+                  <div>
+                    <p className="text-base md:text-lg text-muted-foreground flex items-center gap-1.5">
+                      <Building2 className="h-4 w-4 shrink-0" />
+                      {job.company}
+                    </p>
+                    <div className="flex flex-wrap items-center gap-4 mt-3 text-sm text-muted-foreground">
+                      <span className="flex items-center gap-1.5">
+                        <MapPin className="h-3.5 w-3.5" />
+                        {job.location}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <Briefcase className="h-3.5 w-3.5" />
+                        {job.jobType}
+                      </span>
+                    </div>
+                    <p className="text-xs text-muted-foreground/70 mt-3 flex items-center gap-1.5">
+                      <Clock className="h-3 w-3" />
+                      {job.datePosted}
+                    </p>
                   </div>
-                  <p className="text-xs text-muted-foreground/70 mt-3 flex items-center gap-1.5">
-                    <Clock className="h-3 w-3" />
-                    {job.datePosted}
-                  </p>
+                </div>
+
+                {/* Right side: icons + stats + apply */}
+                <div className="flex flex-col items-end gap-3 shrink-0">
+                  <div className="flex items-center gap-2">
+                    <button className="p-3 rounded-lg hover:bg-muted transition-colors">
+                      <Share2 className="h-7 w-7 text-muted-foreground" />
+                    </button>
+                    <button className="p-3 rounded-lg hover:bg-muted transition-colors">
+                      <Bookmark className="h-7 w-7 text-muted-foreground" />
+                    </button>
+                  </div>
+                  <div className="flex flex-col items-stretch gap-2 w-full">
+                    <div className="rounded-md border border-border bg-muted/50 px-8 h-11 flex items-center justify-center">
+                      <span className="text-xs font-medium text-muted-foreground">1,247 people applied</span>
+                    </div>
+                    <div className="rounded-md border border-primary/30 bg-primary/5 px-8 h-11 flex items-center justify-center">
+                      <span className="text-xs font-semibold text-primary">Top 12% of candidates</span>
+                    </div>
+                    <Button size="lg" className="px-8">
+                      Apply Now
+                    </Button>
+                  </div>
                 </div>
               </div>
 
-              {/* Right side: icons + stats + apply */}
-              <div className="flex flex-col items-end gap-3 shrink-0">
-                <div className="flex items-center gap-2">
-                  <button className="p-3 rounded-lg hover:bg-muted transition-colors">
-                    <Share2 className="h-7 w-7 text-muted-foreground" />
-                  </button>
-                  <button className="p-3 rounded-lg hover:bg-muted transition-colors">
-                    <Bookmark className="h-7 w-7 text-muted-foreground" />
-                  </button>
+              {/* Mobile layout */}
+              <div className="md:hidden mt-2">
+                <div className="flex items-start justify-between">
+                  <div className="flex-1 min-w-0 pr-2">
+                    <h1 className="text-xl font-bold text-foreground leading-tight">{job.title}</h1>
+                    <p className="text-sm text-muted-foreground flex items-center gap-1 mt-1.5">
+                      <Building2 className="h-3.5 w-3.5 shrink-0" />
+                      {job.company}
+                    </p>
+                    <div className="flex flex-wrap items-center gap-3 mt-2 text-xs text-muted-foreground">
+                      <span className="flex items-center gap-1">
+                        <MapPin className="h-3 w-3" />
+                        {job.location}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Briefcase className="h-3 w-3" />
+                        {job.jobType}
+                      </span>
+                    </div>
+                    <p className="text-[10px] text-muted-foreground/70 mt-1.5 flex items-center gap-1">
+                      <Clock className="h-2.5 w-2.5" />
+                      {job.datePosted}
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-0.5 shrink-0">
+                    <button className="p-1.5 rounded-md hover:bg-muted transition-colors">
+                      <Share2 className="h-4 w-4 text-muted-foreground" />
+                    </button>
+                    <button className="p-1.5 rounded-md hover:bg-muted transition-colors">
+                      <Bookmark className="h-4 w-4 text-muted-foreground" />
+                    </button>
+                  </div>
                 </div>
-                <div className="flex flex-col items-stretch gap-2 w-full">
-                  <div className="rounded-md border border-border bg-muted/50 px-8 h-11 flex items-center justify-center">
-                    <span className="text-xs font-medium text-muted-foreground">1,247 people applied</span>
+                {/* Stats + Apply - below job details on mobile */}
+                <div className="flex items-center gap-2 mt-3">
+                  <div className="rounded-md border border-border bg-muted/50 px-3 h-8 flex items-center justify-center flex-1">
+                    <span className="text-[10px] font-medium text-muted-foreground whitespace-nowrap">1,247 applied</span>
                   </div>
-                  <div className="rounded-md border border-primary/30 bg-primary/5 px-8 h-11 flex items-center justify-center">
-                    <span className="text-xs font-semibold text-primary">Top 12% of candidates</span>
+                  <div className="rounded-md border border-primary/30 bg-primary/5 px-3 h-8 flex items-center justify-center flex-1">
+                    <span className="text-[10px] font-semibold text-primary whitespace-nowrap">Top 12%</span>
                   </div>
-                  <Button size="lg" className="px-8">
+                  <Button size="sm" className="px-4 h-8 text-xs">
                     Apply Now
                   </Button>
                 </div>
               </div>
             </div>
 
+            {/* MOBILE: Horizontal Job Suggestions between header and details */}
+            <div className="lg:hidden">
+              <div className="flex items-stretch gap-3 overflow-x-auto pb-1">
+                <div className="shrink-0 w-[28%] rounded-lg bg-primary flex items-center justify-center px-3">
+                  <span className="text-xs font-semibold text-primary-foreground text-center leading-tight">Job Suggestions</span>
+                </div>
+                {suggestions.map((s) => (
+                  <div key={s.id} className="shrink-0 w-[200px]">
+                    <SuggestionCard job={s} />
+                  </div>
+                ))}
+              </div>
+            </div>
+
             {/* JOB DETAILS SECTIONS */}
-            <div className="space-y-8">
-              <DetailSection title="Job Description" content={job.description} />
-              <DetailSection title="Skills & Experience" content={job.skills} />
-              <DetailSection title="Responsibilities" content={job.responsibilities} />
-              <DetailSection title="Benefits" content={job.benefits} />
+            <div className="space-y-4 md:space-y-8">
+              <DetailSection title="Job Description" content={job.description} mobileLines={3} />
+              <DetailSection title="Skills & Experience" content={job.skills} mobileLines={4} />
+              <DetailSection title="Responsibilities" content={job.responsibilities} mobileLines={4} />
+              <DetailSection title="Benefits" content={job.benefits} mobileLines={4} />
             </div>
           </div>
 
-          {/* RIGHT: Suggestions sidebar (col 4) */}
-          <div className="lg:col-span-1">
+          {/* RIGHT: Suggestions sidebar (col 4) - desktop only */}
+          <div className="hidden lg:block lg:col-span-1">
             <div className="rounded-md bg-primary h-11 flex items-center justify-center mb-4">
               <span className="text-sm font-semibold text-primary-foreground">Job Suggestions</span>
             </div>
