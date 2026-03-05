@@ -200,16 +200,18 @@ const JobApply = () => {
                       <Bookmark className="h-7 w-7 text-muted-foreground" />
                     </button>
                   </div>
-                  <div className="flex flex-col items-stretch gap-2 w-full">
-                    <div className="rounded-md border border-border bg-muted/50 px-8 h-11 flex items-center justify-center">
-                      <span className="text-xs font-medium text-muted-foreground">1,247 people applied</span>
-                    </div>
-                    <div className="rounded-md border border-primary/30 bg-primary/5 px-8 h-11 flex items-center justify-center">
-                      <span className="text-xs font-semibold text-primary">Top 12% of candidates</span>
-                    </div>
-                    <Button size="lg" className="px-8">
+                  <div className="flex flex-col items-stretch gap-3 w-full">
+                    <Button size="lg" className="px-10 h-12 text-base font-semibold shadow-md">
                       Apply Now
                     </Button>
+                    <div className="flex items-center gap-2">
+                      <div className="rounded-md border border-border bg-muted/50 px-3 h-8 flex items-center justify-center flex-1">
+                        <span className="text-[10px] font-medium text-muted-foreground">1,247 applied</span>
+                      </div>
+                      <div className="rounded-md border border-primary/30 bg-primary/5 px-3 h-8 flex items-center justify-center flex-1">
+                        <span className="text-[10px] font-semibold text-primary">Top 12%</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
