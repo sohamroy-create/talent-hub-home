@@ -119,14 +119,6 @@ const JobApply = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Back nav */}
-      <div className="max-w-7xl mx-auto px-4 pt-4">
-        <Link to="/jobs" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors">
-          <ChevronLeft className="h-4 w-4" />
-          Back to Jobs
-        </Link>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 py-6">
         {/* Desktop: 4-column grid */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -136,6 +128,14 @@ const JobApply = () => {
 
             {/* HEADER SECTION */}
             <div className="rounded-xl border border-border bg-card p-6 md:p-8 relative flex justify-between">
+              {/* Back button on top border */}
+              <Link
+                to="/jobs"
+                className="absolute -top-[14px] left-6 inline-flex items-center gap-1 text-sm font-medium text-primary-foreground bg-primary px-3 py-1 rounded-md hover:bg-primary/90 transition-colors"
+              >
+                <ChevronLeft className="h-4 w-4" />
+                Back to Jobs
+              </Link>
               {/* Job info */}
               <div className="pr-8 flex flex-col justify-between">
                 <h1 className={`font-bold text-foreground leading-tight ${
