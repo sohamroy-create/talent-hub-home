@@ -69,7 +69,7 @@ const DetailSection = ({ title, content }: DetailSectionProps) => {
   const displayContent = needsTruncation ? lines.slice(0, 6).join("\n") : content;
 
   return (
-    <div className={`${SECTION_HEIGHT} flex flex-col`}>
+    <div className={`${SECTION_HEIGHT} flex flex-col rounded-xl border border-border bg-card p-6`}>
       <h3 className="text-lg font-semibold text-foreground mb-3">{title}</h3>
       <p className="text-sm text-muted-foreground whitespace-pre-line leading-relaxed flex-1">
         {displayContent}
@@ -202,8 +202,8 @@ const JobApply = () => {
 
           {/* RIGHT: Suggestions sidebar (col 4) */}
           <div className="lg:col-span-1">
-            <div className="rounded-md border border-border bg-muted/50 h-11 flex items-center justify-center mb-4">
-              <span className="text-sm font-semibold text-foreground">Job Suggestions</span>
+            <div className="rounded-md bg-primary h-11 flex items-center justify-center mb-4">
+              <span className="text-sm font-semibold text-primary-foreground">Job Suggestions</span>
             </div>
             <div className="space-y-3">
               {suggestions.map((s) => (
