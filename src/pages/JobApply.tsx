@@ -102,15 +102,24 @@ const DetailSection = ({ title, content }: DetailSectionProps) => {
 };
 
 const SuggestionCard = ({ job }: { job: typeof suggestions[0] }) => (
-  <Link
-    to={`/jobs/${job.id}`}
-    className="block rounded-lg border border-border p-4 hover:shadow-md hover:border-primary/30 transition-all bg-card"
-  >
-    <h4 className="text-sm font-semibold text-foreground leading-snug">{job.title}</h4>
-    <p className="text-xs text-muted-foreground mt-1">{job.company}</p>
-    <p className="text-[11px] text-muted-foreground mt-0.5">{job.location}</p>
-    <span className="text-[10px] text-muted-foreground mt-1 block">{job.date}</span>
-  </Link>
+  <div className="rounded-lg border border-border p-4 hover:shadow-md hover:border-primary/30 transition-all bg-card">
+    <div className="flex justify-between items-start">
+      <Link to={`/jobs/${job.id}`} className="flex-1 min-w-0">
+        <h4 className="text-sm font-semibold text-foreground leading-snug">{job.title}</h4>
+        <p className="text-xs text-muted-foreground mt-1">{job.company}</p>
+        <p className="text-[11px] text-muted-foreground mt-0.5">{job.location}</p>
+        <span className="text-[10px] text-muted-foreground mt-1 block">{job.date}</span>
+      </Link>
+      <div className="flex items-center gap-1 shrink-0 ml-2">
+        <button className="p-1.5 rounded-md hover:bg-muted transition-colors">
+          <Share2 className="h-4 w-4 text-muted-foreground" />
+        </button>
+        <button className="p-1.5 rounded-md hover:bg-muted transition-colors">
+          <Bookmark className="h-4 w-4 text-muted-foreground" />
+        </button>
+      </div>
+    </div>
+  </div>
 );
 
 const JobApply = () => {
