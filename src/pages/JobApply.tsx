@@ -135,30 +135,36 @@ const JobApply = () => {
           <div className="lg:col-span-3 space-y-8">
 
             {/* HEADER SECTION */}
-            <div className="rounded-xl border border-border bg-card p-6 md:p-8 relative flex items-center justify-between">
+            <div className="rounded-xl border border-border bg-card p-6 md:p-8 relative flex justify-between">
               {/* Job info */}
-              <div className="pr-8">
-                <h1 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
+              <div className="pr-8 flex flex-col justify-between">
+                <h1 className={`font-bold text-foreground leading-tight ${
+                  job.title.length < 20 ? 'text-3xl md:text-4xl' : 
+                  job.title.length < 35 ? 'text-2xl md:text-3xl' : 
+                  'text-xl md:text-2xl'
+                }`}>
                   {job.title}
                 </h1>
-                <p className="text-base md:text-lg text-muted-foreground mt-4 flex items-center gap-1.5">
-                  <Building2 className="h-4 w-4 shrink-0" />
-                  {job.company}
-                </p>
-                <div className="flex flex-wrap items-center gap-4 mt-4 text-sm text-muted-foreground">
-                  <span className="flex items-center gap-1.5">
-                    <MapPin className="h-3.5 w-3.5" />
-                    {job.location}
-                  </span>
-                  <span className="flex items-center gap-1.5">
-                    <Briefcase className="h-3.5 w-3.5" />
-                    {job.jobType}
-                  </span>
+                <div>
+                  <p className="text-base md:text-lg text-muted-foreground flex items-center gap-1.5">
+                    <Building2 className="h-4 w-4 shrink-0" />
+                    {job.company}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-4 mt-3 text-sm text-muted-foreground">
+                    <span className="flex items-center gap-1.5">
+                      <MapPin className="h-3.5 w-3.5" />
+                      {job.location}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Briefcase className="h-3.5 w-3.5" />
+                      {job.jobType}
+                    </span>
+                  </div>
+                  <p className="text-xs text-muted-foreground/70 mt-3 flex items-center gap-1.5">
+                    <Clock className="h-3 w-3" />
+                    {job.datePosted}
+                  </p>
                 </div>
-                <p className="text-xs text-muted-foreground/70 mt-4 flex items-center gap-1.5">
-                  <Clock className="h-3 w-3" />
-                  {job.datePosted}
-                </p>
               </div>
 
               {/* Right side: icons + stats + apply */}
