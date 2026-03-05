@@ -135,9 +135,9 @@ const JobApply = () => {
           <div className="lg:col-span-3 space-y-8">
 
             {/* HEADER SECTION */}
-            <div className="rounded-xl border border-border bg-card p-6 md:p-8 relative">
+            <div className="rounded-xl border border-border bg-card p-8 md:p-10 relative">
               {/* Top-right: Share & Save */}
-              <div className="absolute top-6 right-6 md:top-8 md:right-8 flex items-center gap-2">
+              <div className="absolute top-8 right-8 md:top-10 md:right-10 flex items-center gap-2">
                 <button className="p-2 rounded-lg hover:bg-muted transition-colors">
                   <Share2 className="h-5 w-5 text-muted-foreground" />
                 </button>
@@ -147,32 +147,32 @@ const JobApply = () => {
               </div>
 
               {/* Job info */}
-              <div className="pr-24">
+              <div className="pr-28">
                 <h1 className="text-2xl md:text-3xl font-bold text-foreground leading-tight">
                   {job.title}
                 </h1>
-                <p className="text-base md:text-lg text-muted-foreground mt-1 flex items-center gap-1.5">
+                <p className="text-base md:text-lg text-muted-foreground mt-3 flex items-center gap-1.5">
                   <Building2 className="h-4 w-4 shrink-0" />
                   {job.company}
                 </p>
-                <div className="flex flex-wrap items-center gap-3 mt-2 text-sm text-muted-foreground">
-                  <span className="flex items-center gap-1">
+                <div className="flex flex-wrap items-center gap-4 mt-3 text-sm text-muted-foreground">
+                  <span className="flex items-center gap-1.5">
                     <MapPin className="h-3.5 w-3.5" />
                     {job.location}
                   </span>
-                  <span className="flex items-center gap-1">
+                  <span className="flex items-center gap-1.5">
                     <Briefcase className="h-3.5 w-3.5" />
                     {job.jobType}
                   </span>
                 </div>
-                <p className="text-xs text-muted-foreground/70 mt-2 flex items-center gap-1">
+                <p className="text-xs text-muted-foreground/70 mt-3 flex items-center gap-1.5">
                   <Clock className="h-3 w-3" />
                   {job.datePosted}
                 </p>
               </div>
 
               {/* Bottom-right: Apply */}
-              <div className="flex justify-end mt-6">
+              <div className="flex justify-end mt-8">
                 <Button size="lg" className="px-8">
                   Apply Now
                 </Button>
