@@ -171,7 +171,9 @@ const About = () => {
             <motion.div
               variants={scaleIn}
               custom={0}
-              className="group relative rounded-3xl border border-border bg-card p-8 md:p-10 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-500 overflow-hidden"
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="group relative rounded-3xl border border-border bg-card p-8 md:p-10 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 overflow-hidden"
             >
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-primary/60 to-transparent rounded-t-3xl scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
               <div className="absolute -bottom-20 -right-20 w-40 h-40 rounded-full bg-primary/5 group-hover:bg-primary/10 transition-colors duration-500" />
@@ -193,6 +195,8 @@ const About = () => {
 
             {/* Candidates */}
             <motion.div
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               variants={scaleIn}
               custom={1}
               className="group relative rounded-3xl border border-border bg-card p-8 md:p-10 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-500 overflow-hidden"
@@ -289,7 +293,9 @@ const About = () => {
                 key={tool.name}
                 variants={scaleIn}
                 custom={tool.delay}
-                className="group relative flex items-start gap-5 rounded-2xl border border-primary-foreground/10 bg-primary-foreground/5 backdrop-blur-sm p-6 hover:bg-primary-foreground/10 hover:border-primary/40 hover:-translate-y-0.5 transition-all duration-400"
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 3.5 + tool.delay * 0.5, repeat: Infinity, ease: "easeInOut", delay: tool.delay * 0.3 }}
+                className="group relative flex items-start gap-5 rounded-2xl border border-primary-foreground/10 bg-primary-foreground/5 backdrop-blur-sm p-6 hover:bg-primary-foreground/10 hover:border-primary/40 transition-all duration-400"
               >
                 <motion.span
                   whileHover={{ scale: 1.3, rotate: 10 }}
