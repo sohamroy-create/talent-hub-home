@@ -195,6 +195,8 @@ const About = () => {
 
             {/* Candidates */}
             <motion.div
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
               variants={scaleIn}
               custom={1}
               className="group relative rounded-3xl border border-border bg-card p-8 md:p-10 hover:shadow-2xl hover:shadow-primary/5 hover:-translate-y-1 transition-all duration-500 overflow-hidden"
