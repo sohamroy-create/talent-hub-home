@@ -3,12 +3,14 @@ import Footer from "@/components/Footer";
 import { Shield, Zap, Users, Briefcase, BookOpen, Sparkles, ArrowRight, Rocket } from "lucide-react";
 import { motion } from "framer-motion";
 
+const customEase = [0.22, 1, 0.36, 1] as const;
+
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
   visible: (i: number = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.6, delay: i * 0.15, ease: customEase as unknown as [number, number, number, number] },
   }),
 };
 
@@ -17,7 +19,7 @@ const scaleIn = {
   visible: (i: number = 0) => ({
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.5, delay: i * 0.1, ease: customEase as unknown as [number, number, number, number] },
   }),
 };
 
