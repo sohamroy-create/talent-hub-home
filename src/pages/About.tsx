@@ -293,7 +293,9 @@ const About = () => {
                 key={tool.name}
                 variants={scaleIn}
                 custom={tool.delay}
-                className="group relative flex items-start gap-5 rounded-2xl border border-primary-foreground/10 bg-primary-foreground/5 backdrop-blur-sm p-6 hover:bg-primary-foreground/10 hover:border-primary/40 hover:-translate-y-0.5 transition-all duration-400"
+                animate={{ y: [0, -5, 0] }}
+                transition={{ duration: 3.5 + tool.delay * 0.5, repeat: Infinity, ease: "easeInOut", delay: tool.delay * 0.3 }}
+                className="group relative flex items-start gap-5 rounded-2xl border border-primary-foreground/10 bg-primary-foreground/5 backdrop-blur-sm p-6 hover:bg-primary-foreground/10 hover:border-primary/40 transition-all duration-400"
               >
                 <motion.span
                   whileHover={{ scale: 1.3, rotate: 10 }}
