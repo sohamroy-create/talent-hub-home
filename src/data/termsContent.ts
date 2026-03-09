@@ -197,15 +197,14 @@ const indiaTermsAddendum: LegalSection = {
 export const termsConditions: RegionDocument[] = [
   {
     regionId: "universal",
-    regionLabel: ",
-    subtitle: "Recruiter Terms and Conditions (All Regions)",
+    regionLabel: " subtitle: "Recruiter Terms and Conditions (All Regions)",
     effectiveDate: "March 6, 2026",
     sections: [...baseSections, europeTermsAddendum, usTermsAddendum, latamTermsAddendum, indiaTermsAddendum],
   },
   {
     regionId: "europe",
     regionLabel: "ðŸ‡ªðe",
- le: "Recruiter Terms and Conditions (EEA/UK/Switzerland)",
+ le: " Terms and Conditions (EEA/UK/Switzerland)",
     effectiveDate: "March 6, 2026",
     sections: [...baseSections, europeTermsAddendum],
   },
