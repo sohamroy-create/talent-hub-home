@@ -143,11 +143,20 @@ const Legal = () => {
                 <span>Privacy Policy</span>
               </TabsTrigger>
               <TabsTrigger
-                value="terms"
+                value="user-terms"
+                className="flex items-center gap-2 px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+              >
+                <Users className="h-4 w-4" />
+                <span className="hidden sm:inline">User Terms</span>
+                <span className="sm:hidden">Users</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="recruiter-terms"
                 className="flex items-center gap-2 px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
               >
                 <FileText className="h-4 w-4" />
-                <span>Terms & Conditions</span>
+                <span className="hidden sm:inline">Recruiter Terms</span>
+                <span className="sm:hidden">Recruiters</span>
               </TabsTrigger>
             </TabsList>
 
