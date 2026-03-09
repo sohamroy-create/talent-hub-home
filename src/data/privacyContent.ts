@@ -11,7 +11,7 @@ export interface RegionDocument {
   sections: LegalSection[];
 }
 
-const commonIntro = `Joblet.ai ("Platform," "we," "us," or "our") is a job board and recruitment platform operated by Joveo Inc., a company incorporated in the United States. This Privacy and Data Security Policy ("Policy") describes how we collect, use, store, share, and protect personal data when you access or use our Platform, whether as a job seeker, recruiter, employer, or casual visitor. We are committed to protecting your privacy and ensuring that your personal data is handled responsibly, transparently, and in compliance with applicable data protection laws worldwide, including but not limited to the General Data Protection Regulation (GDPR), the California Consumer Privacy Act as amended by the California Privacy Rights Act (CCPA/CPRA), Brazil's Lei Geral de Proteção de Dados (LGPD), India's Digital Personal Data Protection Act (DPDPA), and other applicable national and regional privacy frameworks.`;
+const commonIntro = `Joblet.ai ("Platform," "we," "us," or "our") is a job board and recruitment platform operated by Joveo Inc., a company incorporated in the United States. This Privacy and Data Security Policy ("Policy") describes how we collect, use, store, share, and protect personal data when you access or use our Platform, whether as a job seeker, recruiter, employer, or casual visitor. We are committed to protecting your privacy and ensuring that your personal data is handled responsibly, transparently, and in compliance with applicable data protection laws worldwide, including but not limited to the General Data Protection Regulation (GDPR), the California Consumer Privacy Act as amended by the California Privacy Rights Act (CCPA/CPRA), Brazil's Lei Geral de Protecao de Dados (LGPD), India's Digital Personal Data Protection Act (DPDPA), and other applicable national and regional privacy frameworks.`;
 
 const commonDataController = `The data controller responsible for processing your personal data is:
 <ul>
@@ -304,7 +304,7 @@ const latamAddendum: LegalSection = {
   content: `<div class="bg-accent/50 p-4 rounded-lg mb-4 text-sm italic">This addendum applies to individuals located in Latin America, with specific provisions for Brazilian residents under the LGPD.</div>
 
 <h4>C.1 LGPD Compliance (Brazilian Residents)</h4>
-<p>If you are located in Brazil, the processing of your personal data is governed by the Lei Geral de Proteção de Dados (Law No. 13.709/2018, "LGPD"), as enforced by the Autoridade Nacional de Proteção de Dados (ANPD). Joveo Inc. acts as the data controller (controlador).</p>
+<p>If you are located in Brazil, the processing of your personal data is governed by the Lei Geral de Protecao de Dados (Law No. 13.709/2018, "LGPD"), as enforced by the Autoridade Nacional de Protecao de Dados (ANPD). Joveo Inc. acts as the data controller (controlador).</p>
 
 <h4>C.2 Legal Basis for Processing Under LGPD</h4>
 <p>Under the LGPD (Article 7), we process your personal data based on:</p>
@@ -375,35 +375,35 @@ const indiaAddendum: LegalSection = {
 export const privacyPolicies: RegionDocument[] = [
   {
     regionId: "universal",
-    regionLabel: "🌐 Universal",
+    regionLabel: "Universal",
     subtitle: "Comprehensive Privacy and Data Security Policy (All Regions)",
     effectiveDate: "March 6, 2026",
     sections: [...baseSections, europeAddendum, usAddendum, latamAddendum, indiaAddendum],
   },
   {
     regionId: "europe",
-    regionLabel: "🇪🇺 Europe",
+    regionLabel: "Europe",
     subtitle: "Privacy and Data Security Policy (EEA/UK/Switzerland - GDPR)",
     effectiveDate: "March 6, 2026",
     sections: [...baseSections, europeAddendum],
   },
   {
     regionId: "us",
-    regionLabel: "🇺🇸 United States",
+    regionLabel: "United States",
     subtitle: "Privacy and Data Security Policy (United States - CCPA/CPRA)",
     effectiveDate: "March 6, 2026",
     sections: [...baseSections, usAddendum],
   },
   {
     regionId: "india",
-    regionLabel: "🇮🇳 India",
+    regionLabel: "India",
     subtitle: "Privacy and Data Security Policy (India - DPDPA)",
     effectiveDate: "March 6, 2026",
     sections: [...baseSections, indiaAddendum],
   },
   {
     regionId: "latam",
-    regionLabel: "🌎 Latin America",
+    regionLabel: "Latin America",
     subtitle: "Privacy and Data Security Policy (Latin America - LGPD)",
     effectiveDate: "March 6, 2026",
     sections: [...baseSections, latamAddendum],
