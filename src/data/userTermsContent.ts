@@ -169,7 +169,7 @@ const indiaUserAddendum: LegalSection = {
 export const userTerms: RegionDocument[] = [
   {
     regionId: "universal",
-    regionLabel: "🌐 Universal",
+    regionLabel: "Universal",
     subtitle: "Terms and Conditions for Job Seekers (All Regions)",
     effectiveDate: "March 6, 2026",
     sections: [...baseSections, europeUserAddendum, usUserAddendum, latamUserAddendum, indiaUserAddendum],
