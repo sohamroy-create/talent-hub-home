@@ -11,7 +11,8 @@ import {
 } from "@/components/ui/accordion";
 import { privacyPolicies } from "@/data/privacyContent";
 import { termsConditions } from "@/data/termsContent";
-import { Shield, FileText, Globe, ChevronRight } from "lucide-react";
+import { userTerms } from "@/data/userTermsContent";
+import { Shield, FileText, Users, Globe, ChevronRight } from "lucide-react";
 import type { RegionDocument } from "@/data/privacyContent";
 
 const RegionSelector = ({
