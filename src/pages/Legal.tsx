@@ -185,9 +185,8 @@ const Legal = () => {
             </TabsContent>
 
             <TabsContent value="recruiter-terms">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-                <Globe className="h-4 w-4" />
-                <span>Select your region:</span>
+              <div className="mb-4">
+                <span className="text-sm text-muted-foreground">Select your region:</span>
               </div>
               <RegionSelector
                 regions={termsConditions}
