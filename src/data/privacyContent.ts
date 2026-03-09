@@ -375,14 +375,14 @@ const indiaAddendum: LegalSection = {
 export const privacyPolicies: RegionDocument[] = [
   {
     regionId: "universal",
-    regionLabel: " subtitle: "Comprehensive Privacy and Data Security Policy (All Regions)",
+    regionLabel: "itle: "Comprehensive Privacy and Data Security Policy (All Regions)",
     effectiveDate: "March 6, 2026",
     sections: [...baseSections, europeAddendum, usAddendum, latamAddendum, indiaAddendum],
   },
   {
     regionId: "europe",
     regionLabel: "ðŸ‡ªðe",
- le: "nd Data Security Policy (EEA/UK/Switzerland - GDPR)",
+ le: "nd Daty Policy (EEA/UK/Switzerland - GDPR)",
     effectiveDate: "March 6, 2026",
     sections: [...baseSections, europeAddendum],
   },
