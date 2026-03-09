@@ -173,17 +173,30 @@ const Legal = () => {
               <LegalDocument document={selectedPrivacy} />
             </TabsContent>
 
-            <TabsContent value="terms">
+            <TabsContent value="user-terms">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                <Globe className="h-4 w-4" />
+                <span>Select your region:</span>
+              </div>
+              <RegionSelector
+                regions={userTerms}
+                selectedRegion={userTermsRegion}
+                onSelect={setUserTermsRegion}
+              />
+              <LegalDocument document={selectedUserTerms} />
+            </TabsContent>
+
+            <TabsContent value="recruiter-terms">
               <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                 <Globe className="h-4 w-4" />
                 <span>Select your region:</span>
               </div>
               <RegionSelector
                 regions={termsConditions}
-                selectedRegion={termsRegion}
-                onSelect={setTermsRegion}
+                selectedRegion={recruiterTermsRegion}
+                onSelect={setRecruiterTermsRegion}
               />
-              <LegalDocument document={selectedTerms} />
+              <LegalDocument document={selectedRecruiterTerms} />
             </TabsContent>
           </Tabs>
         </div>
