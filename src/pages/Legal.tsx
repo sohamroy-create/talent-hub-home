@@ -12,7 +12,7 @@ import {
 import { privacyPolicies } from "@/data/privacyContent";
 import { termsConditions } from "@/data/termsContent";
 import { userTerms } from "@/data/userTermsContent";
-import { Shield, FileText, Users, Globe, ChevronRight } from "lucide-react";
+import { Shield, FileText, Users, ChevronRight } from "lucide-react";
 import type { RegionDocument } from "@/data/privacyContent";
 
 const RegionSelector = ({
