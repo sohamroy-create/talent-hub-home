@@ -97,14 +97,16 @@ const Legal = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get("tab") || "privacy";
   const [privacyRegion, setPrivacyRegion] = useState("universal");
-  const [termsRegion, setTermsRegion] = useState("universal");
+  const [userTermsRegion, setUserTermsRegion] = useState("universal");
+  const [recruiterTermsRegion, setRecruiterTermsRegion] = useState("universal");
 
   const setActiveTab = (tab: string) => {
     setSearchParams({ tab });
   };
 
   const selectedPrivacy = privacyPolicies.find((p) => p.regionId === privacyRegion) || privacyPolicies[0];
-  const selectedTerms = termsConditions.find((t) => t.regionId === termsRegion) || termsConditions[0];
+  const selectedUserTerms = userTerms.find((t) => t.regionId === userTermsRegion) || userTerms[0];
+  const selectedRecruiterTerms = termsConditions.find((t) => t.regionId === recruiterTermsRegion) || termsConditions[0];
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
