@@ -29,10 +29,10 @@ const RegionSelector = ({
       <button
         key={region.regionId}
         onClick={() => onSelect(region.regionId)}
-        className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+        className={`px-5 py-2.5 rounded-md text-sm font-medium transition-all ${
           selectedRegion === region.regionId
-            ? "bg-primary text-primary-foreground shadow-md"
-            : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+            ? "bg-primary text-primary-foreground shadow-sm"
+            : "bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground"
         }`}
       >
         {region.regionLabel}
