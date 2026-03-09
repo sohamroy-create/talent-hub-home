@@ -11,7 +11,8 @@ import {
 } from "@/components/ui/accordion";
 import { privacyPolicies } from "@/data/privacyContent";
 import { termsConditions } from "@/data/termsContent";
-import { Shield, FileText, Globe, ChevronRight } from "lucide-react";
+import { userTerms } from "@/data/userTermsContent";
+import { Shield, FileText, Users, Globe, ChevronRight } from "lucide-react";
 import type { RegionDocument } from "@/data/privacyContent";
 
 const RegionSelector = ({
@@ -96,14 +97,16 @@ const Legal = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const activeTab = searchParams.get("tab") || "privacy";
   const [privacyRegion, setPrivacyRegion] = useState("universal");
-  const [termsRegion, setTermsRegion] = useState("universal");
+  const [userTermsRegion, setUserTermsRegion] = useState("universal");
+  const [recruiterTermsRegion, setRecruiterTermsRegion] = useState("universal");
 
   const setActiveTab = (tab: string) => {
     setSearchParams({ tab });
   };
 
   const selectedPrivacy = privacyPolicies.find((p) => p.regionId === privacyRegion) || privacyPolicies[0];
-  const selectedTerms = termsConditions.find((t) => t.regionId === termsRegion) || termsConditions[0];
+  const selectedUserTerms = userTerms.find((t) => t.regionId === userTermsRegion) || userTerms[0];
+  const selectedRecruiterTerms = termsConditions.find((t) => t.regionId === recruiterTermsRegion) || termsConditions[0];
 
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -140,11 +143,20 @@ const Legal = () => {
                 <span>Privacy Policy</span>
               </TabsTrigger>
               <TabsTrigger
-                value="terms"
+                value="user-terms"
+                className="flex items-center gap-2 px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+              >
+                <Users className="h-4 w-4" />
+                <span className="hidden sm:inline">User Terms</span>
+                <span className="sm:hidden">Users</span>
+              </TabsTrigger>
+              <TabsTrigger
+                value="recruiter-terms"
                 className="flex items-center gap-2 px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
               >
                 <FileText className="h-4 w-4" />
-                <span>Terms & Conditions</span>
+                <span className="hidden sm:inline">Recruiter Terms</span>
+                <span className="sm:hidden">Recruiters</span>
               </TabsTrigger>
             </TabsList>
 
@@ -161,17 +173,30 @@ const Legal = () => {
               <LegalDocument document={selectedPrivacy} />
             </TabsContent>
 
-            <TabsContent value="terms">
+            <TabsContent value="user-terms">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
+                <Globe className="h-4 w-4" />
+                <span>Select your region:</span>
+              </div>
+              <RegionSelector
+                regions={userTerms}
+                selectedRegion={userTermsRegion}
+                onSelect={setUserTermsRegion}
+              />
+              <LegalDocument document={selectedUserTerms} />
+            </TabsContent>
+
+            <TabsContent value="recruiter-terms">
               <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
                 <Globe className="h-4 w-4" />
                 <span>Select your region:</span>
               </div>
               <RegionSelector
                 regions={termsConditions}
-                selectedRegion={termsRegion}
-                onSelect={setTermsRegion}
+                selectedRegion={recruiterTermsRegion}
+                onSelect={setRecruiterTermsRegion}
               />
-              <LegalDocument document={selectedTerms} />
+              <LegalDocument document={selectedRecruiterTerms} />
             </TabsContent>
           </Tabs>
         </div>
