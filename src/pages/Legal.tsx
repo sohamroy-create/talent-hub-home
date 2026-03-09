@@ -12,7 +12,7 @@ import {
 import { privacyPolicies } from "@/data/privacyContent";
 import { termsConditions } from "@/data/termsContent";
 import { userTerms } from "@/data/userTermsContent";
-import { Shield, FileText, Users, Globe, ChevronRight } from "lucide-react";
+import { Shield, FileText, Users, ChevronRight } from "lucide-react";
 import type { RegionDocument } from "@/data/privacyContent";
 
 const RegionSelector = ({
@@ -161,9 +161,8 @@ const Legal = () => {
             </TabsList>
 
             <TabsContent value="privacy">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-                <Globe className="h-4 w-4" />
-                <span>Select your region:</span>
+              <div className="mb-4">
+                <span className="text-sm text-muted-foreground">Select your region:</span>
               </div>
               <RegionSelector
                 regions={privacyPolicies}
@@ -174,9 +173,8 @@ const Legal = () => {
             </TabsContent>
 
             <TabsContent value="user-terms">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-                <Globe className="h-4 w-4" />
-                <span>Select your region:</span>
+              <div className="mb-4">
+                <span className="text-sm text-muted-foreground">Select your region:</span>
               </div>
               <RegionSelector
                 regions={userTerms}
@@ -187,9 +185,8 @@ const Legal = () => {
             </TabsContent>
 
             <TabsContent value="recruiter-terms">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-4">
-                <Globe className="h-4 w-4" />
-                <span>Select your region:</span>
+              <div className="mb-4">
+                <span className="text-sm text-muted-foreground">Select your region:</span>
               </div>
               <RegionSelector
                 regions={termsConditions}
