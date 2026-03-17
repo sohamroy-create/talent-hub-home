@@ -8,6 +8,7 @@ import Jobs from "./pages/Jobs";
 import JobApply from "./pages/JobApply";
 import About from "./pages/About";
 import Legal from "./pages/Legal";
+import FAQ from "./pages/FAQ";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
